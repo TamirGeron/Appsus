@@ -19,6 +19,7 @@
 /* mail-app */
 @import './cmps/mail/mail-preview.css';
 @import './cmps/mail/mail-nav.css';
+@import './cmps/mail/mail-send.css';
 
 
 /* @import './cmps/book-list.css';

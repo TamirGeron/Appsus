@@ -4,7 +4,8 @@ import { mailData } from "./mails.data.js"
 export const emailService = {
     query,
     getMailById,
-    unreadMailCount
+    unreadMailCount,
+    sendMail
 }
 
 const MAILKEY = 'mailDB'
@@ -30,4 +31,9 @@ function unreadMailCount() {
         return mail.isRead === false
     })
     return unreadMails.length
+}
+
+
+function sendMail() {
+
 }
