@@ -1,7 +1,7 @@
-import {utilService} from '../../../services/util.service.js'
-import {storageService} from '../../../services/storage.service.js'
+import { utilService } from '../../../services/util.service.js'
+import { storageService } from '../../../services/storage.service.js'
 
-export const noteService ={
+export const noteService = {
     query,
 
 
@@ -13,14 +13,21 @@ export const noteService ={
 const KEY = 'notesDB'
 
 
-function query(){
+function query(filterBy) {
     let notes = _loadFromStorage()
-    if(!notes){
+    if (!notes) {
         notes = createNotes()
         _saveToStorage(notes)
     }
 
-
+    if (filterBy) {
+        console.log(filterBy);
+        notes = notes.filter(note => {
+            return note.type === filterBy
+        })
+    }
+    
+    console.log(notes);
     return Promise.resolve(notes)
 }
 
@@ -33,36 +40,37 @@ function query(){
 function createNotes() {
     return [
         {
-         id: "n101",
-         type: "note-txt",
-         isPinned: true,
-         info: {
-         txt: "Fullstack Me Baby!"
-         }
+            id: "n101",
+            type: "note-txt",
+            isPinned: true,
+            info: {
+                title: 'Fullstack',
+                txt: "Fullstack Me Baby!"
+            }
         },
         {
-         id: "n102",
-         type: "note-img",
-         info: {
-         url: "http://some-img/me",
-         title: "Bobi and Me"
-         },
-         style: {
-         backgroundColor: "#00d"
-         }
+            id: "n102",
+            type: "note-img",
+            info: {
+                url: "http://some-img/me",
+                title: "Bobi and Me"
+            },
+            style: {
+                backgroundColor: "#00d"
+            }
         },
         {
-         id: "n103",
-         type: "note-todos",
-         info: {
-         label: "Get my stuff together",
-         todos: [
-         { txt: "Driving liscence", doneAt: null },
-         { txt: "Coding power", doneAt: 187111111 }
-         ]
-         }
+            id: "n103",
+            type: "note-todos",
+            info: {
+                title: "Get my stuff together",
+                todos: [
+                    { txt: "Driving liscence", doneAt: null },
+                    { txt: "Coding power", doneAt: 187111111 }
+                ]
+            }
         }
-        ];
+    ];
 }
 
 function _saveToStorage(books) {

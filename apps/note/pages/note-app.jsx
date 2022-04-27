@@ -19,9 +19,6 @@ export class NoteApp extends React.Component {
         this.loadNotes()
     }
     
-    
-
-
     loadNotes = () => {
         noteService.query(this.state.filterBy)
             .then(notes => this.setState({ notes }))
