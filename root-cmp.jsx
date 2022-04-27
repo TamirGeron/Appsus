@@ -1,4 +1,4 @@
-import { NoteIndex } from './apps/keep/pages/note-index.jsx'
+import { NoteIndex } from './apps/note/pages/note-index.jsx'
 import { MailIndex } from './apps/mail/pages/mail-index.jsx'
 import { AppHome } from './pages/app-home.jsx'
 
