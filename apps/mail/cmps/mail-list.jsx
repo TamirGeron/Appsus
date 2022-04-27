@@ -8,4 +8,3 @@ export function MailList({ mails, onSelect }) {
         </tbody>
     </table>
 }
-
