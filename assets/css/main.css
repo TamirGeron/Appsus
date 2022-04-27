@@ -25,6 +25,7 @@
 /* note-app */
 @import './cmps/notes/note-preview.css';
 @import './cmps/notes/dynamic-cmps/note-img.css';
+@import './cmps/notes/note-list.css';
 
 
 /* @import './cmps/book-list.css';
