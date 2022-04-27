@@ -29,5 +29,5 @@ function unreadMailCount() {
     const unreadMails = mails.filter(mail => {
         return mail.isRead === false
     })
-    return Promise.resolve(unreadMailCount)
+    return unreadMails.length
 }
