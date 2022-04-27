@@ -12,7 +12,11 @@
 
 /* Cmps */
 /* main app */
-@import './cmps/main-app/app-header.css'
+@import './cmps/main-app/app-header.css';
+
+/* mail-app */
+@import './cmps/mail/mail-preview.css';
+
 
 /* @import './cmps/book-list.css';
 @import './cmps/book-preview.css';

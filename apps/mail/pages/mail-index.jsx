@@ -17,7 +17,6 @@ export class MailIndex extends React.Component {
 
     render() {
         const { mails } = this.state
-        console.log(mails);
         return <section className="mail-index">
             <MailList mails={mails} />
         </section>

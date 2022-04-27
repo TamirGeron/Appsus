@@ -1,12 +1,13 @@
 const { Link } = ReactRouterDOM
 
 export function MailPreview({ mail }) {
-    return <Link to={`/mail/${mail.id}`}>
-        <div className="book-preview">
-            <input type="checkbox" />
-            <label>{mail.mail}</label>
-            <label>{mail.title}</label>
-            <label>{mail.body}</label>
-        </div>
-    </Link>
+    return <tr className="mail-preview">
+        <td className="check-td"><input type="checkbox" /></td>
+        <td className="main-td"><Link to={`/mail/${mail.id}`}>
+            <div>{mail.mail}</div>
+            <div>{mail.title}</div>
+            <div>{mail.body}</div>
+        </Link >
+        </td>
+    </tr>
 }
