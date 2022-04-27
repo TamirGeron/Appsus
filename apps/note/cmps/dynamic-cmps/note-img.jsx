@@ -4,7 +4,10 @@ export class NoteImg extends React.Component{
 
 
     render(){
-    //    const {txt} = this.props.info
-    return <h1>hi not img</h1>
+       const {title, url} = this.props.note.info
+    return <section className="note-img">
+        <h1>{title}</h1>
+        <img src={url} alt="img" />
+    </section>
     }
 }

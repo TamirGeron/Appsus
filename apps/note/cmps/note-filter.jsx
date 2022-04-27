@@ -13,6 +13,8 @@ export class NoteFilter extends React.Component {
         })
     }
 
+    
+
     render() {
         const { filterBy } = this.state
 
