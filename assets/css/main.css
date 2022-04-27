@@ -9,6 +9,7 @@
 /* pages */
 @import 'pages/app/app.css';
 @import 'pages/mail/mail-index.css';
+@import 'pages/notes/note-app.css';
 
 /* @import './pages/book-details.css'; */
 
@@ -20,6 +21,10 @@
 @import './cmps/mail/mail-preview.css';
 @import './cmps/mail/mail-nav.css';
 @import './cmps/mail/mail-send.css';
+
+/* note-app */
+@import './cmps/notes/note-preview.css';
+@import './cmps/notes/dynamic-cmps/note-img.css';
 
 
 /* @import './cmps/book-list.css';

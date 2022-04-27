@@ -6,13 +6,18 @@ import { NoteVideo } from "./dynamic-cmps/note-video.jsx"
 import { NoteTodos } from "./dynamic-cmps/note-todos.jsx"
  
 
-export function NotePreview({ note }) {
+export function NotePreview({ note, onDelete }) {
+
+
     return <Link to={`/note/${note.id}`}>
         <article className="note-preview" >
+        <button onClick={()=>onDelete(note.id)}>x</button>
             <DynamicCmp type={note.type} note={note} /> 
         </article>
     </Link>
 }
+
+
 
 function DynamicCmp(props) {
     switch (props.type) {
