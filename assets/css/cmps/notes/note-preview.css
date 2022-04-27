@@ -1,6 +1,35 @@
 .note-preview{
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    background-color: rgb(238, 104, 104);
     border: 1px solid black;
     width: 200px;
-    height: 200px;
-    margin: 5px 0;
+    height: 250px;
+    border-radius: 5px;
+}
+
+.note-preview:hover{
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.457);
+}
+
+.note-preview button{
+    border: none;
+    background-color:transparent;
+    cursor: pointer;
+}
+
+.close-btn{
+    position: absolute;
+    right: 1px;
+}
+
+.settings{
+    position: absolute;
+    bottom: 0;
+    right: 0;
+}
+
+.settings-img{
+    height: 1rem;
 }
