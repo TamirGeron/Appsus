@@ -1,6 +1,8 @@
 import { MailPreview } from "./mail-preview.jsx"
+import { emailService } from "../services/email.service.js"
 
-export function MailList({ mails, onSelect }) {
+export function ReadMailList({ mails, onSelect }) {
+    mails = emailService.filterMailsByIsRead(mails, true)
 
     return <table className="mail-list">
         <tbody>

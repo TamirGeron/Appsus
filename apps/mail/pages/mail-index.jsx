@@ -1,9 +1,10 @@
 import { emailService } from "../services/email.service.js"
-import { MailList } from "../cmps/mail-list.jsx"
+import { ReadMailList } from "../cmps/read-mail-list.jsx"
 import { MailNav } from "../cmps/mail-nav.jsx"
 import { MailSend } from "../cmps/mail-send.jsx"
 import { MessageAction } from "../cmps/message-action.jsx"
 import { eventBusService } from "../../../services/event-bus-service.js"
+import { UnreadMailList } from "../cmps/unread-mail-list.jsx"
 
 export class MailIndex extends React.Component {
     state = {
@@ -57,12 +58,19 @@ export class MailIndex extends React.Component {
         const { mails, isSend } = this.state
         return <section className="mail-index">
             <MessageAction onDelete={() => this.onDelete} />
-            <div>
-                <button className="send-btn" onClick={() => this.toggleSend()}>Send Email</button>
-                <MailNav />
+            <div className="nav-inbox">
+                <div>
+                    <button className="send-btn" onClick={() => this.toggleSend()}>Send Email</button>
+                    <MailNav />
+                </div>
+                <div>
+                    <h1>Unread</h1>
+                    <UnreadMailList mails={mails} onSelect={this.onSelect} />
+                    <h1>Read</h1>
+                    <ReadMailList mails={mails} onSelect={this.onSelect} />
+                </div>
+                {isSend && <MailSend toggleSend={this.toggleSend} onSend={this.onSend} />}
             </div>
-            <MailList mails={mails} onSelect={this.onSelect} />
-            {isSend && <MailSend toggleSend={this.toggleSend} onSend={this.onSend} />}
         </section>
     }
 }

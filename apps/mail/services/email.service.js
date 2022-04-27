@@ -9,6 +9,7 @@ export const emailService = {
     sendMail,
     getSelectedIds,
     deleteMails,
+    filterMailsByIsRead,
 }
 
 const MAILKEY = 'mailDB'
@@ -79,4 +80,8 @@ function deleteMails(selectIds) {
     })
     storageService.saveToStorage(MAILKEY, mails)
     return Promise.resolve(mails)
+}
+
+function filterMailsByIsRead(mails, isRead) {
+    return mails.filter(mail => mail.isRead === isRead)
 }
