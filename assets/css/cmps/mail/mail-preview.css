@@ -18,7 +18,15 @@
 
 .mail-preview .main-td a {
     display: flex;
-    justify-content: space-between;
+    /* justify-content: space-between; */
+}
+
+.mail-preview .main-td .mail {
+    width: 200px;
+}
+
+.mail-preview .main-td .title {
+    width: 200px;
 }
 
 .mail-preview :hover {

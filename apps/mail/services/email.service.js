@@ -6,7 +6,9 @@ export const emailService = {
     query,
     getMailById,
     unreadMailCount,
-    sendMail
+    sendMail,
+    getSelectedIds,
+    deleteMails,
 }
 
 const MAILKEY = 'mailDB'
@@ -48,5 +50,24 @@ function sendMail(mail, title, body) {
     let mails = storageService.loadFromStorage(MAILKEY)
     mails.push(newMail)
     storageService.saveToStorage(MAILKEY, mails)
+    return Promise.resolve(mails)
+}
+
+function getSelectedIds(mailId, selectIds) {
+    if (!selectIds) return Promise.resolve([mailId])
+    let find = selectIds.indexOf(mailId)
+    if (find > -1) selectIds.splice(find, 1)
+    else selectIds.push(mailId)
+    return Promise.resolve(selectIds)
+}
+
+function deleteMails(selectIds) {
+    let mails = storageService.loadFromStorage(MAILKEY)
+    selectIds.map(id => {
+        const mailIdx = mails.findIndex(mail => {
+            return mail.id === id
+        })
+        mails.splice(mailIdx, 1)
+    })
     return Promise.resolve(mails)
 }
