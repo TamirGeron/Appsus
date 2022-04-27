@@ -1,11 +1,9 @@
+import { MailPreview } from "./mail-preview.jsx"
 
-
-export function MailList() {
+export function MailList({mails}) {
 
     return <section className="mail-list">
-        <input type="checkbox" />
-        <label>Name</label>
-        <label>Title</label>
-        <label>body</label>
+        {mails.map((mail,index) => <MailPreview key={index} mail={mail} />)}
     </section>
 }
+
