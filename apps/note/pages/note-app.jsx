@@ -14,11 +14,11 @@ export class NoteApp extends React.Component {
         filterBy: null,
         selectedNote: null
     }
-    
+
     componentDidMount() {
         this.loadNotes()
     }
-    
+
     loadNotes = () => {
         noteService.query(this.state.filterBy)
             .then(notes => this.setState({ notes }))
@@ -30,22 +30,38 @@ export class NoteApp extends React.Component {
         })
     }
 
+    onAdd = (ev) => {
+        ev.preventDefault()
+        console.log('ev', ev);
+        const info = {
+            title: ev.target[0].value,
+            txt:ev.target[1].value,
+        }
+        noteService.addNote(info)
+        .then(notes=>this.setState({notes}))
+    }
 
+    onDelete=(noteId)=>{
+        noteService.deleteNote(noteId)
+        .then(notes=>this.setState({notes}))
+    }
 
 
 
     render() {
-        let {notes , selectedNote} = this.state
+        let { notes, selectedNote } = this.state
 
-        return(
-         <section className="note-app">
-            <h1>Hello from note app</h1>
-            <NavBar />
-            <NoteFilter filterBy={this.state.filterBy} onSetFilter={this.onSetFilter}/>
-            <NoteList notes={notes} />
-            <NoteAdd/>
-            <NoteDetails />
-        </section>
+        return (
+            <section className="note-app">
+                <NavBar />
+                {!selectedNote && <React.Fragment>
+                    <NoteAdd onAdd={this.onAdd} />
+                    <NoteFilter filterBy={this.state.filterBy} onSetFilter={this.onSetFilter} />
+                    <NoteList onDelete={this.onDelete} notes={notes} />
+                </React.Fragment>
+                }
+                {selectedNote && <NoteDetails />}
+            </section>
         )
     }
 }

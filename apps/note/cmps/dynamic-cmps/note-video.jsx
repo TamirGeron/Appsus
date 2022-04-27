@@ -1,11 +1,14 @@
-export class NoteVideo extends React.Component{
+export class NoteVideo extends React.Component {
 
 
 
 
-    render(){
-    //    const {txt} = this.props.info
-   
-    return <h1>hi note video</h1>
+    render() {
+        const { title, url } = this.props.note.info
+
+        return <section className="note-video">
+            <h1>{title} </h1>
+            <iframe src={url} title={title}></iframe>
+        </section>
     }
 }
