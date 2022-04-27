@@ -6,6 +6,7 @@ export const noteService = {
     query,
     addNote,
     deleteNote,
+    getById,
 }
 
 
@@ -52,6 +53,13 @@ function deleteNote(noteId) {
     notes.splice(noteIdx, 1)
     _saveToStorage(notes)
     return Promise.resolve(notes)
+}
+
+
+function getById(noteId) {
+    const notes = _loadFromStorage()
+    const note = notes.find(note => noteId === note.id)
+    return Promise.resolve(note)
 }
 
 
