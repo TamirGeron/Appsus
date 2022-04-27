@@ -10,15 +10,18 @@ export class MailIndex extends React.Component {
     state = {
         mails: [],
         isSend: false,
-        filterBy: ''
+        filterBy: {
+            search: '',
+            ctgs: ['inbox']
+        }
     }
 
     removeEvent;
 
     componentDidMount() {
         this.loadMails()
-        this.removeEvent = eventBusService.on('search', (filterBy) => {
-            this.setState({ filterBy }, () => this.loadMails())
+        this.removeEvent = eventBusService.on('search', (search) => {
+            this.setState((prevState) => ({ filterBy: { ...prevState.filterBy, search } }), () => this.loadMails())
         })
     }
 
@@ -50,8 +53,10 @@ export class MailIndex extends React.Component {
             .then(selectIds => this.setState({ selectIds }))
     }
 
-    onFilter = () => {
-        console.log('hey');
+    onNavClick = (nav) => {
+        let { ctgs } = this.state.filterBy
+        emailService.getNavAtCtgs(ctgs, nav)
+            .then(this.setState((prevState) => ({ filterBy: { ...prevState.filterBy, ctgs } }), () => this.loadMails()))
     }
 
     render() {
@@ -61,7 +66,7 @@ export class MailIndex extends React.Component {
             <div className="nav-inbox">
                 <div>
                     <button className="send-btn" onClick={() => this.toggleSend()}>Send Email</button>
-                    <MailNav />
+                    <MailNav onNavClick={this.onNavClick} />
                 </div>
                 <div>
                     <h1>Unread</h1>

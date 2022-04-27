@@ -16,7 +16,7 @@ const mails = [
         body: 'I the first mail',
         isRead: false,
         sentAt: new Date(),
-        ctg: ['inbox']
+        ctgs: ['inbox']
     },
     {
         id: utilService.makeId(),
@@ -25,7 +25,7 @@ const mails = [
         body: 'I the first sent mail',
         isRead: true,
         sentAt: new Date(),
-        ctg: ['sent']
+        ctgs: ['sent']
     },
     {
         id: utilService.makeId(),
@@ -34,6 +34,6 @@ const mails = [
         body: 'I another mail',
         isRead: true,
         sentAt: new Date(),
-        ctg: ['inbox', 'read']
+        ctgs: ['inbox']
     }
 ]

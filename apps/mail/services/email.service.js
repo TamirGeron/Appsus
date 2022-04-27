@@ -10,6 +10,7 @@ export const emailService = {
     getSelectedIds,
     deleteMails,
     filterMailsByIsRead,
+    getNavAtCtgs
 }
 
 const MAILKEY = 'mailDB'
@@ -20,11 +21,12 @@ function query(filterBy) {
         mails = mailData.query()
         storageService.saveToStorage(MAILKEY, mails)
     }
-    if (filterBy) {
-        mails = mails.filter(mail => {
-            return mail.title.toLowerCase().includes(filterBy.toLowerCase())
-        })
-    }
+    mails = mails.filter(mail => {
+        return (
+            mail.title.toLowerCase().includes(filterBy.search.toLowerCase()) &&
+            mail.ctgs.some(ctg => ctg.includes(filterBy.ctgs))
+        )
+    })
     return Promise.resolve(mails)
 }
 
@@ -54,7 +56,7 @@ function sendMail(mail, title, body) {
         body,
         isRead: true,
         sentAt: new Date(),
-        ctg: ['sent']
+        ctgs: ['sent']
     }
     let mails = storageService.loadFromStorage(MAILKEY)
     mails.push(newMail)
@@ -84,4 +86,9 @@ function deleteMails(selectIds) {
 
 function filterMailsByIsRead(mails, isRead) {
     return mails.filter(mail => mail.isRead === isRead)
+}
+
+function getNavAtCtgs(ctgs, nav) {
+    if (!ctgs.includes(nav)) ctgs[0] = nav
+    return Promise.resolve(ctgs)
 }
