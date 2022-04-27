@@ -21,6 +21,10 @@
     /* justify-content: space-between; */
 }
 
+.mail-preview .main-td .body {
+    flex-grow: 4;
+}
+
 .mail-preview .main-td .mail {
     width: 200px;
 }

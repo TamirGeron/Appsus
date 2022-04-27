@@ -15,7 +15,7 @@ const mails = [
         title: 'First mail',
         body: 'I the first mail',
         isRead: false,
-        sentAt: new Date(),
+        sentAt: +new Date(),
         ctgs: ['inbox']
     },
     {
@@ -24,7 +24,7 @@ const mails = [
         title: 'First sent mail',
         body: 'I the first sent mail',
         isRead: true,
-        sentAt: new Date(),
+        sentAt: +new Date(),
         ctgs: ['sent']
     },
     {
@@ -33,7 +33,7 @@ const mails = [
         title: 'another',
         body: 'I another mail',
         isRead: true,
-        sentAt: new Date(),
+        sentAt: +new Date(),
         ctgs: ['inbox']
     }
 ]

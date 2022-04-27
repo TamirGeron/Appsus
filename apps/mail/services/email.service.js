@@ -10,7 +10,8 @@ export const emailService = {
     getSelectedIds,
     deleteMails,
     filterMailsByIsRead,
-    getNavAtCtgs
+    getNavAtCtgs,
+    before,
 }
 
 const MAILKEY = 'mailDB'
@@ -55,7 +56,7 @@ function sendMail(mail, title, body) {
         title,
         body,
         isRead: true,
-        sentAt: new Date(),
+        sentAt: +new Date(),
         ctgs: ['sent']
     }
     let mails = storageService.loadFromStorage(MAILKEY)
@@ -91,4 +92,14 @@ function filterMailsByIsRead(mails, isRead) {
 function getNavAtCtgs(ctgs, nav) {
     if (!ctgs.includes(nav)) ctgs[0] = nav
     return Promise.resolve(ctgs)
+}
+
+function before(sentAt) {
+    const time = +new Date() - sentAt
+    if (time < 1000 * 60) return 'Now'
+    else if (time < 1000 * 60 * 60) return `${Math.round(time / (1000 * 60))} minutes`
+    else if (time < 1000 * 60 * 60 * 24) return `${Math.round(time / (1000 * 60 * 60))} hours`
+
+    const date = new Date(sentAt)
+    return `${date.getDate()} /${date.getMonth() + 1}/${date.getYear()}`
 }
