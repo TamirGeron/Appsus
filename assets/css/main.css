@@ -6,7 +6,8 @@
 @import './basics/base.css';
 /* @import './basics/helpers.css'; */
 
-/* Views */
+/* pages */
+@import 'pages/mail/mail-index.css';
 
 /* @import './pages/book-details.css'; */
 
@@ -16,6 +17,7 @@
 
 /* mail-app */
 @import './cmps/mail/mail-preview.css';
+@import './cmps/mail/mail-nav.css';
 
 
 /* @import './cmps/book-list.css';

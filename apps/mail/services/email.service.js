@@ -3,7 +3,8 @@ import { mailData } from "./mails.data.js"
 
 export const emailService = {
     query,
-    getMailById
+    getMailById,
+    unreadMailCount
 }
 
 const MAILKEY = 'mailDB'
@@ -23,4 +24,10 @@ function getMailById(mailId) {
     return mails.find(mail => mailId === mail.id)
 }
 
-
+function unreadMailCount() {
+    let mails = storageService.loadFromStorage(MAILKEY)
+    const unreadMails = mails.filter(mail => {
+        return mail.isRead === false
+    })
+    return Promise.resolve(unreadMailCount)
+}
