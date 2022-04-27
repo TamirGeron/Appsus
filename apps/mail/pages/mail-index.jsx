@@ -3,19 +3,26 @@ import { MailList } from "../cmps/mail-list.jsx"
 import { MailNav } from "../cmps/mail-nav.jsx"
 import { MailSend } from "../cmps/mail-send.jsx"
 import { MessageAction } from "../cmps/message-action.jsx"
+import { eventBusService } from "../../../services/event-bus-service.js"
 
 export class MailIndex extends React.Component {
     state = {
         mails: [],
         isSend: false,
+        filterBy: ''
     }
+
+    removeEvent;
 
     componentDidMount() {
         this.loadMails()
+        this.removeEvent = eventBusService.on('search', (filterBy) => {
+            this.setState({ filterBy }, () => this.loadMails())
+        })
     }
 
     loadMails = () => {
-        emailService.query()
+        emailService.query(this.state.filterBy)
             .then(mails => this.setState({ mails }))
     }
 
@@ -40,6 +47,10 @@ export class MailIndex extends React.Component {
         let { selectIds } = this.state
         emailService.getSelectedIds(mailId, selectIds)
             .then(selectIds => this.setState({ selectIds }))
+    }
+
+    onFilter = () => {
+        console.log('hey');
     }
 
     render() {

@@ -13,13 +13,17 @@ export const emailService = {
 
 const MAILKEY = 'mailDB'
 
-function query() {
+function query(filterBy) {
     let mails = storageService.loadFromStorage(MAILKEY)
     if (!mails || mails.length === 0) {
         mails = mailData.query()
         storageService.saveToStorage(MAILKEY, mails)
     }
-
+    if (filterBy) {
+        mails = mails.filter(mail => {
+            return mail.title.toLowerCase().includes(filterBy.toLowerCase())
+        })
+    }
     return Promise.resolve(mails)
 }
 

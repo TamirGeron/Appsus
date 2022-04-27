@@ -10,6 +10,10 @@
     font-size: 1.2em;
 }
 
+.app-header input {
+    color: black;
+}
+
 .app-header>* {
     color: #f6f4e6;
     padding-left: 20px;
