@@ -1,13 +1,8 @@
+import { NotePreview } from "./note-preview.jsx" 
 
-
-
-export class NoteList extends React.Component{
-
-
-
-    render(){
-        return <section>
-            <h1>hello from note list</h1>
-        </section>
-    }
+export function NoteList({notes}){
+   return <section className="note-list">
+        {notes.map(note => <NotePreview note={note} 
+        key={note.id} />)}
+    </section>
 }
