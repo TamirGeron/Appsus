@@ -1,4 +1,4 @@
-import { NoteIndex } from './apps/note/pages/note-index.jsx'
+import { NoteApp } from './apps/note/pages/note-app.jsx'
 import { MailIndex } from './apps/mail/pages/mail-index.jsx'
 import { AppHome } from './pages/app-home.jsx'
 import { AppHeader } from './cmps/app-header.jsx'
@@ -12,7 +12,7 @@ export function Main() {
         <AppHeader />
         <section className="app">
             <Switch>
-                <Route path="/note" component={NoteIndex} />
+                <Route path="/note" component={NoteApp} />
                 <Route path="/mail" component={MailIndex} />
                 <Route path="/" component={AppHome} />
             </Switch>

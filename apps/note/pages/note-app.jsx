@@ -1,7 +1,12 @@
+import { NavBar } from "../cmps/nav-bar.jsx"
 
-export class NoteIndex extends React.Component {
+
+export class NoteApp extends React.Component {
     
     render() {
-        return <div></div>
+        return <section>
+            <h1>Hello from note app</h1>
+
+        </section>
     }
 }
