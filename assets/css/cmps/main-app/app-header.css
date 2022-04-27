@@ -22,14 +22,6 @@
     color: #eceae5;
 }
 
-.app-header nav {
-    position: absolute;
-    left: 50%;
-    -webkit-transform: translate(-50%, -50%);
-    transform: translate(-50%, -50%);
-
-}
-
 .app-header nav>* {
     text-decoration: none;
     text-transform: uppercase;
