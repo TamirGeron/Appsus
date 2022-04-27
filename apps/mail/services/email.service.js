@@ -30,6 +30,10 @@ function getMailById(mailId) {
 
 function unreadMailCount() {
     let mails = storageService.loadFromStorage(MAILKEY)
+    if (!mails || mails.length === 0) {
+        mails = mailData.query()
+        storageService.saveToStorage(MAILKEY, mails)
+    }
     const unreadMails = mails.filter(mail => {
         return mail.isRead === false
     })
@@ -69,5 +73,6 @@ function deleteMails(selectIds) {
         })
         mails.splice(mailIdx, 1)
     })
+    storageService.saveToStorage(MAILKEY, mails)
     return Promise.resolve(mails)
 }
