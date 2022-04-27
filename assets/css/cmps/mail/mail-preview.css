@@ -24,3 +24,11 @@
 .mail-preview :hover {
     background-color: beige;
 }
+
+.unread {
+    font-weight: bold;
+}
+
+.read {
+    font-weight: normal;
+}
