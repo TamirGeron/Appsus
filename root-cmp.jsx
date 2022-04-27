@@ -1,7 +1,7 @@
 const Router = ReactRouterDOM.HashRouter
 const { Route, Switch } = ReactRouterDOM
 
-export function App() {
+export function Main() {
     return <Router>
         {/* <AppHeader />
         <section className="app">
