@@ -7,6 +7,7 @@
 /* @import './basics/helpers.css'; */
 
 /* pages */
+@import 'pages/app/app.css';
 @import 'pages/mail/mail-index.css';
 
 /* @import './pages/book-details.css'; */
