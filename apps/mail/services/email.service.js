@@ -1,5 +1,6 @@
 import { storageService } from "../../../services/storage.service.js"
 import { mailData } from "./mails.data.js"
+import { utilService } from "../../../services/util.service.js"
 
 export const emailService = {
     query,
@@ -34,6 +35,18 @@ function unreadMailCount() {
 }
 
 
-function sendMail() {
-
+function sendMail(mail, title, body) {
+    const newMail = {
+        id: utilService.makeId(),
+        mail,
+        title,
+        body,
+        isRead: true,
+        sentAt: new Date(),
+        ctg: ['sent']
+    }
+    let mails = storageService.loadFromStorage(MAILKEY)
+    mails.push(newMail)
+    storageService.saveToStorage(MAILKEY, mails)
+    return Promise.resolve(mails)
 }
