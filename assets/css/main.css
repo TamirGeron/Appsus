@@ -11,6 +11,8 @@
 /* @import './pages/book-details.css'; */
 
 /* Cmps */
+/* main app */
+@import './cmps/main-app/app-header.css'
 
 /* @import './cmps/book-list.css';
 @import './cmps/book-preview.css';
