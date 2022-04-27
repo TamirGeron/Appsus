@@ -60,7 +60,8 @@ export class MailIndex extends React.Component {
     }
 
     render() {
-        const { mails, isSend } = this.state
+        const { mails, isSend, filterBy } = this.state
+        const readOrSent = (filterBy.ctgs[0] === 'inbox') ? 'Read' : 'Sent'
         return <section className="mail-index">
             <MessageAction onDelete={() => this.onDelete} />
             <div className="nav-inbox">
@@ -69,13 +70,12 @@ export class MailIndex extends React.Component {
                     <MailNav onNavClick={this.onNavClick} />
                 </div>
                 <div>
-                    <h1>Unread</h1>
-                    <UnreadMailList mails={mails} onSelect={this.onSelect} />
-                    <h1>Read</h1>
+                    {(filterBy.ctgs[0] !== 'sent') && <UnreadMailList mails={mails} onSelect={this.onSelect} />}
+                    <h1>{readOrSent}</h1>
                     <ReadMailList mails={mails} onSelect={this.onSelect} />
                 </div>
                 {isSend && <MailSend toggleSend={this.toggleSend} onSend={this.onSend} />}
             </div>
-        </section>
+        </section >
     }
 }
