@@ -1,10 +1,12 @@
 import { emailService } from "../services/email.service.js"
 import { MailList } from "../cmps/mail-list.jsx"
 import { MailNav } from "../cmps/mail-nav.jsx"
+import { MailSend } from "../cmps/mail-send.jsx"
 
 export class MailIndex extends React.Component {
     state = {
-        mails: []
+        mails: [],
+        isSend: false
     }
 
     componentDidMount() {
@@ -16,11 +18,17 @@ export class MailIndex extends React.Component {
             .then(mails => this.setState({ mails }))
     }
 
+    toggleSend = () => {
+        this.setState({ isSend: !this.state.isSend })
+    }
+
     render() {
-        const { mails } = this.state
+        const { mails, isSend } = this.state
         return <section className="mail-index">
+            <button className="send-btn" onClick={() => this.toggleSend()}>Send Email</button>
             <MailNav />
             <MailList mails={mails} />
+            {isSend && <MailSend toggleSend={this.toggleSend} />}
         </section>
     }
 }
