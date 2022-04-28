@@ -36,7 +36,7 @@
 }
 
 .mail-preview :hover {
-    background-color: beige;
+    background-color: rgba(133, 133, 131, 0.623);
 }
 
 .unread {
