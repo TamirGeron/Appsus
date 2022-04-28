@@ -78,8 +78,9 @@ function togglePin(noteId) {
     let notes = _loadFromStorage()
     const noteIdx = notes.findIndex(note => note.id === noteId)
     const note = notes.find(note => note.id === noteId)
-    if(noteIdx===0) {
-        notes.shift()
+    note.isPinned = !note.isPinned
+    if(!note.isPinned) {
+        notes.splice(noteIdx,1)
         notes.push(note)
     }else{
         notes.splice(noteIdx,1)
