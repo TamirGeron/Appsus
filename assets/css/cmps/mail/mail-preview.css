@@ -9,6 +9,7 @@
     position: relative;
     justify-content: space-between;
     font-size: 20px;
+    font-family:monospace ;
 }
 
 .mail-preview .check-td {
@@ -18,7 +19,6 @@
 
 .mail-preview .main-td a {
     display: flex;
-    /* justify-content: space-between; */
 }
 
 .mail-preview .main-td .body {
