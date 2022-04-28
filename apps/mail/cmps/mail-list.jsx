@@ -37,6 +37,10 @@ export class MailList extends React.Component {
         })
     }
 
+    componentWillUnmount() {
+        this.removeEvent()
+    }
+
     loadMails = () => {
         const { filterBy, sortBy } = this.state
         emailService.query(filterBy, sortBy)

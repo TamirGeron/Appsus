@@ -47,7 +47,8 @@ function query(filterBy, sortBy) {
 
 function getMailById(mailId) {
     let mails = storageService.loadFromStorage(MAILKEY)
-    return mails.find(mail => mailId === mail.id)
+    const mail = mails.find(mail => mailId === mail.id)
+    return Promise.resolve(mail)
 }
 
 function unreadMailCount() {
@@ -59,7 +60,7 @@ function unreadMailCount() {
     const unreadMails = mails.filter(mail => {
         return mail.isRead === false
     })
-    return unreadMails.length
+    return Promise.resolve(unreadMails.length)
 }
 
 

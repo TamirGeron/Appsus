@@ -4,31 +4,42 @@ eventBusService
 
 export class MailNav extends React.Component {
     state = {
-        unreadMailCount: 1
+        unreadMailCount: null
     }
 
+    removeEvents;
+
     componentDidMount() {
-        const unreadMailCount = emailService.unreadMailCount()
-        this.setState({ unreadMailCount })
-        this.removeEvent = eventBusService.on('nav', (lbl) => {
-            this.updateUnread()
+
+        this.mounted = true
+        this.removeEvents = eventBusService.on('nav', (lbl) => {
+            emailService.unreadMailCount()
+                .then(unreadMailCount => {
+                    this.setState({ unreadMailCount })
+                })
         })
+    }
+
+    componentWillUnmount() {
+        this.removeEvents()
     }
 
     updateUnread = () => {
         const unreadMailCount = emailService.unreadMailCount()
-        this.setState({ unreadMailCount })
+        console.log(unreadMailCount);
+
     }
 
     render() {
         const { unreadMailCount } = this.state
         return <section className="mail-nav">
-            <div onClick={() => this.props.onNavClick('inbox')}>Inbox ({unreadMailCount})</div>
+            < div onClick={() => this.props.onNavClick('inbox')
+            }> Inbox({unreadMailCount})</div >
             <div onClick={() => this.props.onNavClick('sent')}>Sent</div>
             <select onChange={() => this.props.onSortBy(event.target.value)}>
                 <option value="sentAt">Date</option>
                 <option value="title">Title</option>
             </select>
-        </section>
+        </section >
     }
 }
