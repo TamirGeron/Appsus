@@ -35,17 +35,31 @@ export class NoteApp extends React.Component {
         console.log('ev', ev);
         const info = {
             title: ev.target[0].value,
-            txt:ev.target[1].value,
+            txt: ev.target[1].value,
         }
         noteService.addNote(info)
-        .then(notes=>this.setState({notes}))
+            .then(notes => this.setState({ notes }))
     }
 
-    onDelete=(noteId)=>{
+    onDelete = (noteId) => {
         noteService.deleteNote(noteId)
-        .then(notes=>this.setState({notes}))
+            .then(notes => this.setState({ notes }))
     }
 
+    onChangeColor = (ev) => {
+        ev.stopPropagation()
+        console.log('hello from color');
+    }
+
+    onTogglePin = (noteId) => {
+        noteService.togglePin(noteId)
+            .then(notes => this.setState({ notes }))
+    }
+
+    onDuplicateNote = (noteId)=>{
+        noteService.duplicateNote(noteId)
+        .then(notes => this.setState({ notes }))
+    }
 
 
     render() {
@@ -57,7 +71,8 @@ export class NoteApp extends React.Component {
                 {!selectedNote && <React.Fragment>
                     <NoteAdd onAdd={this.onAdd} />
                     <NoteFilter filterBy={this.state.filterBy} onSetFilter={this.onSetFilter} />
-                    <NoteList onDelete={this.onDelete} notes={notes} />
+                    <NoteList onChangeColor={this.onChangeColor} onDelete={this.onDelete} notes={notes}
+                    onDuplicateNote={this.onDuplicateNote} onTogglePin={this.onTogglePin} />
                 </React.Fragment>
                 }
                 {selectedNote && <NoteDetails />}

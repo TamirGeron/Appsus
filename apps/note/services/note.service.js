@@ -7,6 +7,8 @@ export const noteService = {
     addNote,
     deleteNote,
     getById,
+    duplicateNote,
+    togglePin,
 }
 
 
@@ -39,7 +41,7 @@ function addNote(info) {
     const note = {
         id: utilService.makeId(),
         type: "note-txt",
-        isPinned: true,
+        isPinned: false,
         info,
     }
     notes.push(note)
@@ -62,13 +64,39 @@ function getById(noteId) {
     return Promise.resolve(note)
 }
 
+function duplicateNote(noteId) {
+    let notes = _loadFromStorage()
+    const noteIdx = notes.findIndex(note => note.id === noteId)
+    let note = {...(notes.find(note => note.id === noteId))}
+    note.id =utilService.makeId()
+    notes.splice(noteIdx,0, note)
+    _saveToStorage(notes)
+    return Promise.resolve(notes)
+}
+
+function togglePin(noteId) {
+    let notes = _loadFromStorage()
+    const noteIdx = notes.findIndex(note => note.id === noteId)
+    const note = notes.find(note => note.id === noteId)
+    if(noteIdx===0) {
+        notes.shift()
+        notes.push(note)
+    }else{
+        notes.splice(noteIdx,1)
+        notes.unshift(note)
+    }
+    _saveToStorage(notes)
+    return Promise.resolve(notes)
+   
+}
+
 
 function createNotes() {
     return [
         {
             id: utilService.makeId(),
             type: "note-txt",
-            isPinned: true,
+            isPinned: false,
             info: {
                 title: 'Fullstack',
                 txt: "Fullstack Me Baby!"
@@ -77,6 +105,7 @@ function createNotes() {
         {
             id: utilService.makeId(),
             type: "note-img",
+            isPinned: false,
             info: {
                 url: "../../assets/img/img1.jpg",
                 title: "Carpe diem"
@@ -88,6 +117,7 @@ function createNotes() {
         {
             id: utilService.makeId(),
             type: "note-todos",
+            isPinned: false,
             info: {
                 title: "Get my stuff together",
                 todos: [
