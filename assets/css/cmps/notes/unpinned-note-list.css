@@ -1,6 +1,6 @@
-.note-list{
+.unpinned-note-list{
+    padding: 10px;
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
     gap:10px;
-    margin-block-start: 10px;
 }

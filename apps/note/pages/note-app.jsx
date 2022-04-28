@@ -3,9 +3,9 @@ import { noteService } from "../services/note.service.js"
 import { NavBar } from "../cmps/nav-bar.jsx"
 import { NoteDetails } from "./note-details.jsx"
 import { NoteAdd } from "../cmps/note-add.jsx"
-import { NoteList } from "../cmps/note-list.jsx"
+import { UnPinnedNoteList } from "../cmps/note-list-unpined.jsx"
 import { NoteFilter } from "../cmps/note-filter.jsx"
-
+import { PinnedNoteList } from "../cmps/pinned-note-list.jsx"
 
 export class NoteApp extends React.Component {
 
@@ -71,7 +71,9 @@ export class NoteApp extends React.Component {
                 {!selectedNote && <React.Fragment>
                     <NoteAdd onAdd={this.onAdd} />
                     <NoteFilter filterBy={this.state.filterBy} onSetFilter={this.onSetFilter} />
-                    <NoteList onChangeColor={this.onChangeColor} onDelete={this.onDelete} notes={notes}
+                    <PinnedNoteList onChangeColor={this.onChangeColor} onDelete={this.onDelete} notes={notes}
+                    onDuplicateNote={this.onDuplicateNote} onTogglePin={this.onTogglePin} />
+                    <UnPinnedNoteList onChangeColor={this.onChangeColor} onDelete={this.onDelete} notes={notes}
                     onDuplicateNote={this.onDuplicateNote} onTogglePin={this.onTogglePin} />
                 </React.Fragment>
                 }
