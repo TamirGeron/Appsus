@@ -2,7 +2,6 @@ import { NoteApp } from './apps/note/pages/note-app.jsx'
 import { MailIndex } from './apps/mail/pages/mail-index.jsx'
 import { AppHome } from './pages/app-home.jsx'
 import { AppHeader } from './cmps/app-header.jsx'
-import { MailDetail } from './apps/mail/cmps/mail-details.jsx'
 import { NoteDetails } from './apps/note/pages/note-details.jsx'
 
 
@@ -16,7 +15,6 @@ export function Main() {
             <Switch>
                 <Route path="/note/:noteId" component={NoteDetails} />
                 <Route path="/note/" component={NoteApp} />
-                <Route path="/mail/:mailId" component={MailDetail} />
                 <Route path="/mail" component={MailIndex} />
                 <Route path="/" component={AppHome} />
             </Switch>

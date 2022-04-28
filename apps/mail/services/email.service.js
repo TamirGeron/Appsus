@@ -29,22 +29,18 @@ function query(filterBy, sortBy) {
         )
     })
 
-    console.log(mails);
-
     mails.sort((a, b) => {
         if (sortBy === 'title') {
             if (a[sortBy].toLowerCase() < b[sortBy].toLowerCase()) return -1
             else if (a[sortBy].toLowerCase() > b[sortBy].toLowerCase()) return 1
             return 0
         }
-        console.log(a[sortBy]);
         if (a[sortBy] < b[sortBy]) return 1
         else if (a[sortBy] > b[sortBy]) return -1
         return 0
 
     })
 
-    console.log(mails);
     return Promise.resolve(mails)
 }
 
@@ -91,6 +87,7 @@ function getSelectedIds(mailId, selectIds) {
 }
 
 function deleteMails(selectIds) {
+    console.log(selectIds);
     let mails = storageService.loadFromStorage(MAILKEY)
     selectIds.map(id => {
         const mailIdx = mails.findIndex(mail => {
@@ -99,7 +96,6 @@ function deleteMails(selectIds) {
         mails.splice(mailIdx, 1)
     })
     storageService.saveToStorage(MAILKEY, mails)
-    return Promise.resolve(mails)
 }
 
 function filterMailsByIsRead(mails, isRead) {
