@@ -6,7 +6,6 @@ import { eventBusService } from "../../../services/event-bus-service.js";
 export class MailList extends React.Component {
     state = {
         mails: [],
-        // isSend: false,
         filterBy: {
             search: '',
             ctgs: ['inbox']

@@ -64,6 +64,3 @@ export class MailIndex extends React.Component {
         </Router >
     }
 }
-
-// <!-- HTML !-->
-// <button class="button-62" role="button">Button 62</button>
