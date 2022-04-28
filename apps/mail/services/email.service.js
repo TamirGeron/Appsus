@@ -16,7 +16,7 @@ export const emailService = {
 
 const MAILKEY = 'mailDB'
 
-function query(filterBy) {
+function query(filterBy, sortBy) {
     let mails = storageService.loadFromStorage(MAILKEY)
     if (!mails || mails.length === 0) {
         mails = mailData.query()
@@ -28,6 +28,23 @@ function query(filterBy) {
             mail.ctgs.some(ctg => ctg.includes(filterBy.ctgs))
         )
     })
+
+    console.log(mails);
+
+    mails.sort((a, b) => {
+        if (sortBy === 'title') {
+            if (a[sortBy].toLowerCase() < b[sortBy].toLowerCase()) return -1
+            else if (a[sortBy].toLowerCase() > b[sortBy].toLowerCase()) return 1
+            return 0
+        }
+        console.log(a[sortBy]);
+        if (a[sortBy] < b[sortBy]) return 1
+        else if (a[sortBy] > b[sortBy]) return -1
+        return 0
+
+    })
+
+    console.log(mails);
     return Promise.resolve(mails)
 }
 

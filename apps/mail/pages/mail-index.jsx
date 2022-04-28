@@ -13,7 +13,8 @@ export class MailIndex extends React.Component {
         filterBy: {
             search: '',
             ctgs: ['inbox']
-        }
+        },
+        sortBy: 'sentAt'
     }
 
     removeEvent;
@@ -26,7 +27,8 @@ export class MailIndex extends React.Component {
     }
 
     loadMails = () => {
-        emailService.query(this.state.filterBy)
+        const { filterBy, sortBy } = this.state
+        emailService.query(filterBy, sortBy)
             .then(mails => this.setState({ mails }))
     }
 
@@ -59,6 +61,10 @@ export class MailIndex extends React.Component {
             .then(this.setState((prevState) => ({ filterBy: { ...prevState.filterBy, ctgs } }), () => this.loadMails()))
     }
 
+    onSortBy = (sortBy) => {
+        this.setState({ sortBy }, () => this.loadMails())
+    }
+
     render() {
         const { mails, isSend, filterBy } = this.state
         const readOrSent = (filterBy.ctgs[0] === 'inbox') ? 'Read' : 'Sent'
@@ -67,7 +73,7 @@ export class MailIndex extends React.Component {
             <div className="nav-inbox">
                 <div>
                     <button className="send-btn" onClick={() => this.toggleSend()}>Send Email</button>
-                    <MailNav onNavClick={this.onNavClick} />
+                    <MailNav onNavClick={this.onNavClick} onSortBy={this.onSortBy} />
                 </div>
                 <div>
                     {(filterBy.ctgs[0] !== 'sent') && <UnreadMailList mails={mails} onSelect={this.onSelect} />}
