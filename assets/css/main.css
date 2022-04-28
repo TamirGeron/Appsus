@@ -4,7 +4,7 @@
 /* Basics */
 
 @import './basics/base.css';
-/* @import './basics/helpers.css'; */
+@import './basics/helpers.css';
 
 /* pages */
 @import 'pages/app/app.css';
@@ -26,6 +26,7 @@
 /* note-app */
 @import './cmps/notes/note-preview.css';
 @import './cmps/notes/dynamic-cmps/note-img.css';
+@import './cmps/notes/dynamic-cmps/note-todos.css';
 @import './cmps/notes/note-list.css';
 
 

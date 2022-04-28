@@ -3,19 +3,20 @@ const { Link } = ReactRouterDOM
 
 import { DynamicCmp } from "./dynamic-cmps/dynamic-cmp.jsx"
 
-export function NotePreview({ note, onDelete }) {
+export function NotePreview({ note, onDelete, onChangeColor,onTogglePin, onDuplicateNote }) {
 
+    let togglePin =(note.isPinned)? 'pined':'unpined';
 
-    return <Link to={`/note/${note.id}`}>
-        <article className="note-preview" >
-        <button className="close-btn" onClick={()=>onDelete(note.id)}>x</button>
-            <DynamicCmp type={note.type} note={note} /> 
-            <div className="settings">
-    <button><img className="settings-img" src="../../assets/img/palette-solid.svg" alt="" /></button>
-    <button><img className="settings-img" src="../../assets/img/font-solid.svg" alt="" /></button>
-    </div>
-        </article>
-    </Link>
+    return <article className="note-preview" >
+        <button className="close-btn" onClick={() => onDelete(note.id)}>x</button>
+            <DynamicCmp type={note.type} note={note} />
+        <div className="settings">
+        <button className="pin-btn " onClick={() => onTogglePin(note.id)}><img className={`settings-img ${togglePin}`} src="../../assets/img/tack.svg" alt="" /></button>
+        <button ><img onClick={() => onDuplicateNote(note.id)} className="settings-img" src="../../assets/img/clone.svg" alt="" /></button>
+            <button ><img onClick={() => onChangeColor(event)} className="settings-img" src="../../assets/img/palette-solid.svg" alt="" /></button>
+            <button><img className="settings-img" src="../../assets/img/font-solid.svg" alt="" /></button>
+        </div>
+    </article>
 }
 
 
