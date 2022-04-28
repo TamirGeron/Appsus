@@ -10,20 +10,25 @@ export class MailIndex extends React.Component {
     state = {
         mails: [],
         isSend: false,
-        filterBy: ''
+        filterBy: {
+            search: '',
+            ctgs: ['inbox']
+        },
+        sortBy: 'sentAt'
     }
 
     removeEvent;
 
     componentDidMount() {
         this.loadMails()
-        this.removeEvent = eventBusService.on('search', (filterBy) => {
-            this.setState({ filterBy }, () => this.loadMails())
+        this.removeEvent = eventBusService.on('search', (search) => {
+            this.setState((prevState) => ({ filterBy: { ...prevState.filterBy, search } }), () => this.loadMails())
         })
     }
 
     loadMails = () => {
-        emailService.query(this.state.filterBy)
+        const { filterBy, sortBy } = this.state
+        emailService.query(filterBy, sortBy)
             .then(mails => this.setState({ mails }))
     }
 
@@ -50,27 +55,33 @@ export class MailIndex extends React.Component {
             .then(selectIds => this.setState({ selectIds }))
     }
 
-    onFilter = () => {
-        console.log('hey');
+    onNavClick = (nav) => {
+        let { ctgs } = this.state.filterBy
+        emailService.getNavAtCtgs(ctgs, nav)
+            .then(this.setState((prevState) => ({ filterBy: { ...prevState.filterBy, ctgs } }), () => this.loadMails()))
+    }
+
+    onSortBy = (sortBy) => {
+        this.setState({ sortBy }, () => this.loadMails())
     }
 
     render() {
-        const { mails, isSend } = this.state
+        const { mails, isSend, filterBy } = this.state
+        const readOrSent = (filterBy.ctgs[0] === 'inbox') ? 'Read' : 'Sent'
         return <section className="mail-index">
             <MessageAction onDelete={() => this.onDelete} />
             <div className="nav-inbox">
                 <div>
                     <button className="send-btn" onClick={() => this.toggleSend()}>Send Email</button>
-                    <MailNav />
+                    <MailNav onNavClick={this.onNavClick} onSortBy={this.onSortBy} />
                 </div>
                 <div>
-                    <h1>Unread</h1>
-                    <UnreadMailList mails={mails} onSelect={this.onSelect} />
-                    <h1>Read</h1>
+                    {(filterBy.ctgs[0] !== 'sent') && <UnreadMailList mails={mails} onSelect={this.onSelect} />}
+                    <h1>{readOrSent}</h1>
                     <ReadMailList mails={mails} onSelect={this.onSelect} />
                 </div>
                 {isSend && <MailSend toggleSend={this.toggleSend} onSend={this.onSend} />}
             </div>
-        </section>
+        </section >
     }
 }

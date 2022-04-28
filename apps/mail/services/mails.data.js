@@ -15,8 +15,8 @@ const mails = [
         title: 'First mail',
         body: 'I the first mail',
         isRead: false,
-        sentAt: new Date(),
-        ctg: ['inbox']
+        sentAt: +new Date(),
+        ctgs: ['inbox']
     },
     {
         id: utilService.makeId(),
@@ -24,8 +24,8 @@ const mails = [
         title: 'First sent mail',
         body: 'I the first sent mail',
         isRead: true,
-        sentAt: new Date(),
-        ctg: ['sent']
+        sentAt: +new Date(),
+        ctgs: ['sent']
     },
     {
         id: utilService.makeId(),
@@ -33,7 +33,169 @@ const mails = [
         title: 'another',
         body: 'I another mail',
         isRead: true,
-        sentAt: new Date(),
-        ctg: ['inbox', 'read']
-    }
+        sentAt: +new Date(),
+        ctgs: ['inbox']
+    },
+    {
+        id: utilService.makeId(),
+        mail: 'tamir@gmail.com',
+        title: 'First mail',
+        body: 'I the first mail',
+        isRead: false,
+        sentAt: +new Date(),
+        ctgs: ['inbox']
+    },
+    {
+        id: utilService.makeId(),
+        mail: 'shlomo@gmail.com',
+        title: 'First sent mail',
+        body: 'I the first sent mail',
+        isRead: true,
+        sentAt: +new Date(),
+        ctgs: ['sent']
+    },
+    {
+        id: utilService.makeId(),
+        mail: 'Joni@gmail.com',
+        title: 'another',
+        body: 'I another mail',
+        isRead: true,
+        sentAt: +new Date(),
+        ctgs: ['inbox']
+    },
+    {
+        id: utilService.makeId(),
+        mail: 'tamir@gmail.com',
+        title: 'First mail',
+        body: 'I the first mail',
+        isRead: false,
+        sentAt: +new Date(),
+        ctgs: ['inbox']
+    },
+    {
+        id: utilService.makeId(),
+        mail: 'shlomo@gmail.com',
+        title: 'First sent mail',
+        body: 'I the first sent mail',
+        isRead: true,
+        sentAt: +new Date(),
+        ctgs: ['sent']
+    },
+    {
+        id: utilService.makeId(),
+        mail: 'Joni@gmail.com',
+        title: 'another',
+        body: 'I another mail',
+        isRead: true,
+        sentAt: +new Date(),
+        ctgs: ['inbox']
+    },
+    {
+        id: utilService.makeId(),
+        mail: 'tamir@gmail.com',
+        title: 'First mail',
+        body: 'I the first mail',
+        isRead: false,
+        sentAt: +new Date(),
+        ctgs: ['inbox']
+    },
+    {
+        id: utilService.makeId(),
+        mail: 'shlomo@gmail.com',
+        title: 'First sent mail',
+        body: 'I the first sent mail',
+        isRead: true,
+        sentAt: +new Date(),
+        ctgs: ['sent']
+    },
+    {
+        id: utilService.makeId(),
+        mail: 'Joni@gmail.com',
+        title: 'another',
+        body: 'I another mail',
+        isRead: true,
+        sentAt: +new Date(),
+        ctgs: ['inbox']
+    },
+    {
+        id: utilService.makeId(),
+        mail: 'tamir@gmail.com',
+        title: 'First mail',
+        body: 'I the first mail',
+        isRead: false,
+        sentAt: +new Date(),
+        ctgs: ['inbox']
+    },
+    {
+        id: utilService.makeId(),
+        mail: 'shlomo@gmail.com',
+        title: 'First sent mail',
+        body: 'I the first sent mail',
+        isRead: true,
+        sentAt: +new Date(),
+        ctgs: ['sent']
+    },
+    {
+        id: utilService.makeId(),
+        mail: 'Joni@gmail.com',
+        title: 'another',
+        body: 'I another mail',
+        isRead: true,
+        sentAt: +new Date(),
+        ctgs: ['inbox']
+    },
+    {
+        id: utilService.makeId(),
+        mail: 'tamir@gmail.com',
+        title: 'First mail',
+        body: 'I the first mail',
+        isRead: false,
+        sentAt: +new Date(),
+        ctgs: ['inbox']
+    },
+    {
+        id: utilService.makeId(),
+        mail: 'shlomo@gmail.com',
+        title: 'First sent mail',
+        body: 'I the first sent mail',
+        isRead: true,
+        sentAt: +new Date(),
+        ctgs: ['sent']
+    },
+    {
+        id: utilService.makeId(),
+        mail: 'Joni@gmail.com',
+        title: 'another',
+        body: 'I another mail',
+        isRead: true,
+        sentAt: +new Date(),
+        ctgs: ['inbox']
+    },
+    {
+        id: utilService.makeId(),
+        mail: 'tamir@gmail.com',
+        title: 'First mail',
+        body: 'I the first mail',
+        isRead: false,
+        sentAt: +new Date(),
+        ctgs: ['inbox']
+    },
+    {
+        id: utilService.makeId(),
+        mail: 'shlomo@gmail.com',
+        title: 'First sent mail',
+        body: 'I the first sent mail',
+        isRead: true,
+        sentAt: +new Date(),
+        ctgs: ['sent']
+    },
+    {
+        id: utilService.makeId(),
+        mail: 'Joni@gmail.com',
+        title: 'another',
+        body: 'I another mail',
+        isRead: true,
+        sentAt: +new Date(),
+        ctgs: ['inbox']
+    },
 ]

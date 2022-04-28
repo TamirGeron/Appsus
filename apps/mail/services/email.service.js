@@ -10,21 +10,41 @@ export const emailService = {
     getSelectedIds,
     deleteMails,
     filterMailsByIsRead,
+    getNavAtCtgs,
+    before,
 }
 
 const MAILKEY = 'mailDB'
 
-function query(filterBy) {
+function query(filterBy, sortBy) {
     let mails = storageService.loadFromStorage(MAILKEY)
     if (!mails || mails.length === 0) {
         mails = mailData.query()
         storageService.saveToStorage(MAILKEY, mails)
     }
-    if (filterBy) {
-        mails = mails.filter(mail => {
-            return mail.title.toLowerCase().includes(filterBy.toLowerCase())
-        })
-    }
+    mails = mails.filter(mail => {
+        return (
+            mail.title.toLowerCase().includes(filterBy.search.toLowerCase()) &&
+            mail.ctgs.some(ctg => ctg.includes(filterBy.ctgs))
+        )
+    })
+
+    console.log(mails);
+
+    mails.sort((a, b) => {
+        if (sortBy === 'title') {
+            if (a[sortBy].toLowerCase() < b[sortBy].toLowerCase()) return -1
+            else if (a[sortBy].toLowerCase() > b[sortBy].toLowerCase()) return 1
+            return 0
+        }
+        console.log(a[sortBy]);
+        if (a[sortBy] < b[sortBy]) return 1
+        else if (a[sortBy] > b[sortBy]) return -1
+        return 0
+
+    })
+
+    console.log(mails);
     return Promise.resolve(mails)
 }
 
@@ -53,8 +73,8 @@ function sendMail(mail, title, body) {
         title,
         body,
         isRead: true,
-        sentAt: new Date(),
-        ctg: ['sent']
+        sentAt: +new Date(),
+        ctgs: ['sent']
     }
     let mails = storageService.loadFromStorage(MAILKEY)
     mails.push(newMail)
@@ -84,4 +104,19 @@ function deleteMails(selectIds) {
 
 function filterMailsByIsRead(mails, isRead) {
     return mails.filter(mail => mail.isRead === isRead)
+}
+
+function getNavAtCtgs(ctgs, nav) {
+    if (!ctgs.includes(nav)) ctgs[0] = nav
+    return Promise.resolve(ctgs)
+}
+
+function before(sentAt) {
+    const time = +new Date() - sentAt
+    if (time < 1000 * 60) return 'Now'
+    else if (time < 1000 * 60 * 60) return `${Math.round(time / (1000 * 60))} minutes`
+    else if (time < 1000 * 60 * 60 * 24) return `${Math.round(time / (1000 * 60 * 60))} hours`
+
+    const date = new Date(sentAt)
+    return `${date.getDate()} /${date.getMonth() + 1}/${date.getYear()}`
 }
