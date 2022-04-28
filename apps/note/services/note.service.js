@@ -23,14 +23,16 @@ function query(filterBy) {
         _saveToStorage(notes)
     }
 
+
     if (filterBy) {
-        console.log(filterBy);
         notes = notes.filter(note => {
-            return note.type === filterBy
+            return (
+                (note.type === filterBy.type || !filterBy.type) &&
+                note.info.title.toLowerCase().includes(filterBy.search.toLowerCase())
+            )
         })
     }
 
-    console.log(notes);
     return Promise.resolve(notes)
 }
 
@@ -67,9 +69,9 @@ function getById(noteId) {
 function duplicateNote(noteId) {
     let notes = _loadFromStorage()
     const noteIdx = notes.findIndex(note => note.id === noteId)
-    let note = {...(notes.find(note => note.id === noteId))}
-    note.id =utilService.makeId()
-    notes.splice(noteIdx,0, note)
+    let note = { ...(notes.find(note => note.id === noteId)) }
+    note.id = utilService.makeId()
+    notes.splice(noteIdx, 0, note)
     _saveToStorage(notes)
     return Promise.resolve(notes)
 }
@@ -79,16 +81,16 @@ function togglePin(noteId) {
     const noteIdx = notes.findIndex(note => note.id === noteId)
     const note = notes.find(note => note.id === noteId)
     note.isPinned = !note.isPinned
-    if(!note.isPinned) {
-        notes.splice(noteIdx,1)
+    if (!note.isPinned) {
+        notes.splice(noteIdx, 1)
         notes.push(note)
-    }else{
-        notes.splice(noteIdx,1)
+    } else {
+        notes.splice(noteIdx, 1)
         notes.unshift(note)
     }
     _saveToStorage(notes)
     return Promise.resolve(notes)
-   
+
 }
 
 

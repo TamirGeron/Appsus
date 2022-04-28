@@ -12,7 +12,7 @@ export class AppHeader extends React.Component {
         return <header className="app-header">
             <h3 >Appsus</h3>
 
-            <input onChange={this.onChange} type="search" placeholder='Search mail' />
+            <input onChange={this.onChange} type="search" placeholder='Search' />
 
             <nav>
                 <NavLink to="/note">Note</NavLink>

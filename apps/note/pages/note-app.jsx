@@ -1,4 +1,5 @@
 import { noteService } from "../services/note.service.js"
+import { eventBusService } from "../../../services/event-bus-service.js"
 
 import { NavBar } from "../cmps/nav-bar.jsx"
 import { NoteDetails } from "./note-details.jsx"
@@ -11,12 +12,18 @@ export class NoteApp extends React.Component {
 
     state = {
         notes: [],
-        filterBy: null,
+        filterBy: {
+            search: '',
+            type: ''
+        },
         selectedNote: null
     }
 
     componentDidMount() {
         this.loadNotes()
+        this.removeEvent = eventBusService.on('search', (search) => {
+            this.setState((prevState) => ({ filterBy: { ...prevState.filterBy, search } }), () => this.loadNotes())
+        })
     }
 
     loadNotes = () => {
@@ -24,8 +31,8 @@ export class NoteApp extends React.Component {
             .then(notes => this.setState({ notes }))
     }
 
-    onSetFilter = (filterBy) => {
-        this.setState({ filterBy }, () => {
+    onSetFilter = (type) => {
+        this.setState((prevState) => ({ filterBy: { ...prevState.filterBy, type } }), () => {
             this.loadNotes()
         })
     }
@@ -56,9 +63,9 @@ export class NoteApp extends React.Component {
             .then(notes => this.setState({ notes }))
     }
 
-    onDuplicateNote = (noteId)=>{
+    onDuplicateNote = (noteId) => {
         noteService.duplicateNote(noteId)
-        .then(notes => this.setState({ notes }))
+            .then(notes => this.setState({ notes }))
     }
 
 
@@ -72,9 +79,9 @@ export class NoteApp extends React.Component {
                     <NoteAdd onAdd={this.onAdd} />
                     <NoteFilter filterBy={this.state.filterBy} onSetFilter={this.onSetFilter} />
                     <PinnedNoteList onChangeColor={this.onChangeColor} onDelete={this.onDelete} notes={notes}
-                    onDuplicateNote={this.onDuplicateNote} onTogglePin={this.onTogglePin} />
+                        onDuplicateNote={this.onDuplicateNote} onTogglePin={this.onTogglePin} />
                     <UnPinnedNoteList onChangeColor={this.onChangeColor} onDelete={this.onDelete} notes={notes}
-                    onDuplicateNote={this.onDuplicateNote} onTogglePin={this.onTogglePin} />
+                        onDuplicateNote={this.onDuplicateNote} onTogglePin={this.onTogglePin} />
                 </React.Fragment>
                 }
                 {selectedNote && <NoteDetails />}

@@ -20,7 +20,9 @@ export class MailList extends React.Component {
     componentDidMount() {
         this.loadMails()
         this.removeEvent = eventBusService.on('search', (search) => {
-            this.setState((prevState) => ({ filterBy: { ...prevState.filterBy, search } }), () => this.loadMails())
+            this.setState((prevState) => {
+                ({ filterBy: { ...prevState.filterBy, search } }), () => this.loadMails()
+            })
         })
         this.removeEvent = eventBusService.on('delete', (lbl) => {
             this.onDelete()
