@@ -37,14 +37,50 @@ export class NoteApp extends React.Component {
         })
     }
 
-    onAdd = (ev) => {
+    onAddTxt = (ev, value) => {
         ev.preventDefault()
-        console.log('ev', ev);
+        console.log('ev', ev.path);
+
         const info = {
             title: ev.target[0].value,
             txt: ev.target[1].value,
         }
-        noteService.addNote(info)
+        noteService.addNote(info, value)
+            .then(notes => this.setState({ notes }))
+    }
+    onAddImg = (ev) => {
+        ev.preventDefault()
+        console.log('ev', ev.path);
+
+        const info = {
+            title: '*Add title*',
+            txt: ev.path.form[2],
+        }
+        noteService.addNote(info, value)
+            .then(notes => this.setState({ notes }))
+    }
+    // onAddVideo = (ev) => {
+    //     ev.preventDefault()
+    //     console.log('ev', ev.path);
+
+    //     const info = {
+    //         title: ev.target[0].value,
+    //         txt: ev.target[1].value,
+    //     }
+    //     noteService.addNote(info)
+    //         .then(notes => this.setState({ notes }))
+    // }
+    onAddTodos = (ev, value) => {
+        ev.preventDefault()
+        console.log('ev', ev.path);
+        txts = ev.target[1].value.split(',')
+        todos = txts.map(txt => { return { txt, doneAt: new Date() } })
+        const info = {
+            title: ev.target[0].value,
+            todos: todos
+        }
+
+        noteService.addNote(info, value)
             .then(notes => this.setState({ notes }))
     }
 
@@ -71,13 +107,13 @@ export class NoteApp extends React.Component {
 
     render() {
         let { notes, selectedNote } = this.state
-
+        document.getElementById('root')
         return (
             <section className="note-app">
                 <NavBar />
                 {!selectedNote && <React.Fragment>
-                    <NoteAdd onAdd={this.onAdd} />
                     <NoteFilter filterBy={this.state.filterBy} onSetFilter={this.onSetFilter} />
+                    <NoteAdd onAdd={this.onAdd} />
                     <PinnedNoteList onChangeColor={this.onChangeColor} onDelete={this.onDelete} notes={notes}
                         onDuplicateNote={this.onDuplicateNote} onTogglePin={this.onTogglePin} />
                     <UnPinnedNoteList onChangeColor={this.onChangeColor} onDelete={this.onDelete} notes={notes}
