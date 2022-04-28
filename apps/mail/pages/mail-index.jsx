@@ -20,12 +20,6 @@ export class MailIndex extends React.Component {
 
     removeEvent;
 
-    componentDidMount() {
-        this.removeEvent = eventBusService.on('search', (search) => {
-            this.setState((prevState) => ({ filterBy: { ...prevState.filterBy, search } }), () => this.loadMails())
-        })
-    }
-
     toggleSend = () => {
         this.setState({ isSend: !this.state.isSend })
     }
@@ -53,12 +47,12 @@ export class MailIndex extends React.Component {
     }
 
     render() {
-        const { isSend, filterBy } = this.state
+        const { isSend } = this.state
         return <Router className="mail-index">
             <MessageAction onDelete={() => this.onDelete} />
             <div className="nav-inbox">
                 <div>
-                    <button className="send-btn" onClick={() => this.toggleSend()}>Send Email</button>
+                    <button className="send-btn" onClick={() => this.toggleSend()}>+ Compose</button>
                     <MailNav onNavClick={this.onNavClick} onSortBy={this.onSortBy} />
                 </div>
                 <Switch>
@@ -70,3 +64,6 @@ export class MailIndex extends React.Component {
         </Router >
     }
 }
+
+// <!-- HTML !-->
+// <button class="button-62" role="button">Button 62</button>

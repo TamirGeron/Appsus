@@ -11,7 +11,7 @@ export function MailSend({ toggleSend, onSend }) {
                     <input placeholder="Enter Title" type="text" />
                 </label><br />
                 <label > Message: <br />
-                    <textarea rows="10" cols="50" />
+                    <textarea rows="30"  />
                 </label>
                 <input type="submit" value="Send" />
             </form>
