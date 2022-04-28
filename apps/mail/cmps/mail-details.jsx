@@ -21,6 +21,12 @@ export class MailDetail extends React.Component {
             )
     }
 
+    onSend(event) {
+        eventBusService.emit('onSend', event)
+        this.props.history.push(`/mail`)
+    }
+
+
     render() {
         const { mail } = this.state
         const mailTime = emailService.before(mail.sentAt)
@@ -34,7 +40,10 @@ export class MailDetail extends React.Component {
             <h1></h1>
             <p>{mail.body}</p>
 
-            <form>
+            <form onSubmit={() => this.onSend(event)}>
+                <label>To: <input disabled type="text" value={mail.mail} /></label>
+                <br />
+                <label>Title: <input disabled type="text" value={mail.title} /></label>
                 <textarea rows="5" cols="10" />
                 <input type="submit" value="Send" />
             </form>

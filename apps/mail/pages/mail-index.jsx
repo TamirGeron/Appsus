@@ -20,16 +20,22 @@ export class MailIndex extends React.Component {
 
     removeEvent;
 
+    componentDidMount() {
+        this.removeEvent = eventBusService.on('onSend', (ev) => {
+            this.onSend(ev, false)
+        })
+    }
+
     toggleSend = () => {
         this.setState({ isSend: !this.state.isSend })
     }
 
-    onSend = (ev) => {
+    onSend = (ev, isOpen = true) => {
         ev.preventDefault()
         const target = ev.target
         emailService.sendMail(target[0].value, target[1].value, target[2].value)
             .then(mails => {
-                this.toggleSend()
+                if (isOpen) this.toggleSend()
                 eventBusService.emit('send', mails)
             })
     }
