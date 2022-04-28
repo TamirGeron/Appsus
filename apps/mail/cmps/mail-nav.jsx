@@ -1,6 +1,5 @@
 import { eventBusService } from "../../../services/event-bus-service.js"
 import { emailService } from "../services/email.service.js"
-eventBusService
 
 export class MailNav extends React.Component {
     state = {
@@ -10,7 +9,7 @@ export class MailNav extends React.Component {
     removeEvents;
 
     componentDidMount() {
-
+        this.updateUnread()
         this.mounted = true
         this.removeEvents = eventBusService.on('nav', (lbl) => {
             emailService.unreadMailCount()
@@ -25,8 +24,8 @@ export class MailNav extends React.Component {
     }
 
     updateUnread = () => {
-        const unreadMailCount = emailService.unreadMailCount()
-        console.log(unreadMailCount);
+        emailService.unreadMailCount()
+            .then(unreadMailCount => this.setState({ unreadMailCount }))
 
     }
 
