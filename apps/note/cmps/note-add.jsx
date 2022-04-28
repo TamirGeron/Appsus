@@ -1,11 +1,11 @@
 export class NoteAdd extends React.Component {
     state = {
         value: '',
-        input: 'text',
+        input: '',
     }
 
     handleChange = (value) => {
-        this.setState({ value: value, input: this.switchInput(value) },console.log('state', this.state))
+        this.setState({ value: value, input: this.switchInput(value) })
 
     }
 
@@ -23,34 +23,52 @@ export class NoteAdd extends React.Component {
 
     }
 
+    onAdd = (ev ,value ) => {
+        ev.stopPropagation()
+        switch (value) {
+            case 'note-txt':
+                return this.props.onAddTxt(ev)
+            case 'note-todos':
+                return this.props.onAddTodos(ev)
+            case 'note-img':
+                return this.props.onAddImg(ev)
+            case 'note-video':
+                return this.props.onAddVideo(ev)
+
+        }
+    }
+
 
     render() {
-        const { value } = this.state
+        const { value, input } = this.state
+        let placeholder = value === 'note-txt' ? "Start a note" : "Enter comma separated list"
 
         return <section className="note-add">
-            <label>
-                <input type="text" id="add-note" placeholder="Title" name="title" />
-                <div className="add-imgs">
-                <img onClick={() => this.handleChange('note-txt')} className="add-img" src="../../assets/img/imges.svg" alt="" />
-                <img onClick={() => this.handleChange('note-todos')} className="add-img" src="../../assets/img/todos.svg" alt="" />
-                <img onClick={() => this.handleChange('note-img')} className="add-img" src="../../assets/img/txt.svg" alt="" /> 
-                </div>
+             <form onSubmit={() => this.props.onAddTxt(event, value)}>
+            <label className="add-input">
+                <input type="text" id="add-note" placeholder="Any thoughts today?" name="note-add" />
             </label>
-            {/* <select onChange={this.handleChange} >
-                    <option value="note-txt">Text</option>
-                    <option value="note-img">Image</option>
-                    <option value="note-video">video</option>
-                    <option value="note-todos">Todo list</option>
-                </select> */}
-            <form onSubmit={() => this.props.onAdd(event, value)}>
-                {/* <label htmlFor="add-txt"></label>
-                <label htmlFor="add-note"></label>
-                <input type="text" id="add-note" placeholder="Note" name="txt" />
-                <label htmlFor="add-img"></label>
-                <input type="file" id="imge_input" accept="image/png, image/jpg" /> */}
-
-                {/* <button>Save</button> */}
+            <label className="add-input">
+                <input type="text" id="add-note" placeholder="Text body" name="note-add" />
+            </label>
+                    <button>Save</button>
             </form>
+            <div className="add-imgs">
+                <img onClick={() => this.handleChange('note-img')} className="add-img" src="../../assets/img/imges.svg" alt="" />
+                <img onClick={() => this.handleChange('note-todos')} className="add-img" src="../../assets/img/todos.svg" alt="" />
+                <img onClick={() => this.handleChange('note-txt')} className="add-img" src="../../assets/img/txt.svg" alt="" />
+            </div>
+
+            <div className="add-modal">
+                <form onSubmit={() => this.onAdd(event, value)}>
+            <label className="title"></label>
+                <input type="text" id="add-title" placeholder="title" name="note-title" />
+                    {/* <label className="note-add"></label> */}
+                        <input type={input} id="add-note" placeholder={placeholder} name="note-add" />
+                    
+                    <button>Save</button>
+                </form>
+            </div>
         </section>
     }
 
