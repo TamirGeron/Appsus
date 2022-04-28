@@ -38,11 +38,11 @@ function query(filterBy) {
 
 
 
-function addNote(info) {
+function addNote(info, type) {
     let notes = _loadFromStorage()
     const note = {
         id: utilService.makeId(),
-        type: "note-txt",
+        type,
         isPinned: false,
         info,
     }

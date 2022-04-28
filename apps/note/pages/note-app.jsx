@@ -37,7 +37,7 @@ export class NoteApp extends React.Component {
         })
     }
 
-    onAddTxt = (ev, value) => {
+    onAddTxt = (ev) => {
         ev.preventDefault()
         console.log('ev', ev.path);
 
@@ -45,42 +45,45 @@ export class NoteApp extends React.Component {
             title: ev.target[0].value,
             txt: ev.target[1].value,
         }
-        noteService.addNote(info, value)
+        noteService.addNote(info, 'note-txt')
             .then(notes => this.setState({ notes }))
     }
     onAddImg = (ev) => {
         ev.preventDefault()
-        console.log('ev', ev.path);
+        console.log('img', ev.path.form);
 
         const info = {
             title: '*Add title*',
-            txt: ev.path.form[2],
+            url: ev.path.form[1],
         }
-        noteService.addNote(info, value)
+        noteService.addNote(info, 'note-img' )
             .then(notes => this.setState({ notes }))
     }
-    // onAddVideo = (ev) => {
-    //     ev.preventDefault()
-    //     console.log('ev', ev.path);
-
-    //     const info = {
-    //         title: ev.target[0].value,
-    //         txt: ev.target[1].value,
-    //     }
-    //     noteService.addNote(info)
-    //         .then(notes => this.setState({ notes }))
-    // }
-    onAddTodos = (ev, value) => {
+    onAddVideo = (ev) => {
         ev.preventDefault()
         console.log('ev', ev.path);
-        txts = ev.target[1].value.split(',')
-        todos = txts.map(txt => { return { txt, doneAt: new Date() } })
+
+        const info = {
+            title: ev.target[0].value,
+            txt: ev.target[1].value,
+        }
+        noteService.addNote(info,'note-video')
+            .then(notes => this.setState({ notes }))
+    }
+    onAddTodos = (ev) => {
+        ev.preventDefault()
+        console.log('ev', ev.path);
+
+        let txts = ev.target[1].value.split(',')
+        console.log(txts);
+        
+        let todos = txts.map(txt => { return { txt, doneAt: new Date() } })
         const info = {
             title: ev.target[0].value,
             todos: todos
         }
 
-        noteService.addNote(info, value)
+        noteService.addNote(info, 'note-todos')
             .then(notes => this.setState({ notes }))
     }
 
@@ -113,7 +116,8 @@ export class NoteApp extends React.Component {
                 <NavBar />
                 {!selectedNote && <React.Fragment>
                     <NoteFilter filterBy={this.state.filterBy} onSetFilter={this.onSetFilter} />
-                    <NoteAdd onAdd={this.onAdd} />
+                    <NoteAdd onAddTodos={this.onAddTodos} onAddImg={this.onAddImg}
+                    onAddVideo={this.onAddVideo} onAddTxt={this.onAddTxt} />
                     <PinnedNoteList onChangeColor={this.onChangeColor} onDelete={this.onDelete} notes={notes}
                         onDuplicateNote={this.onDuplicateNote} onTogglePin={this.onTogglePin} />
                     <UnPinnedNoteList onChangeColor={this.onChangeColor} onDelete={this.onDelete} notes={notes}
