@@ -1,0 +1,8 @@
+.pinned-note-list{
+    padding: 10px;
+    border-bottom: 1px solid rgba(106, 91, 91, 0.713);
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap:10px;
+    margin-block-start: 10px;
+}
