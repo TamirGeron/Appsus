@@ -12,6 +12,7 @@ export const emailService = {
     filterMailsByIsRead,
     getNavAtCtgs,
     before,
+    markAsRead
 }
 
 const MAILKEY = 'mailDB'
@@ -115,4 +116,11 @@ function before(sentAt) {
 
     const date = new Date(sentAt)
     return `${date.getDate()} /${date.getMonth() + 1}/${date.getYear()}`
+}
+
+function markAsRead(mailId) {
+    let mails = storageService.loadFromStorage(MAILKEY)
+    const mailIdx = mails.findIndex(mail => mailId === mail.id)
+    mails[mailIdx].isRead = true
+    storageService.saveToStorage(MAILKEY, mails)
 }

@@ -1,8 +1,8 @@
 .mail-nav {
     padding-top: 30px;
-    font-size: 30px;
+    font-size: .875rem
 }
 
-.mail-nav >* {
+.mail-nav>* {
     cursor: pointer;
 }
