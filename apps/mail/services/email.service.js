@@ -23,6 +23,7 @@ function query(filterBy, sortBy) {
         mails = mailData.query()
         storageService.saveToStorage(MAILKEY, mails)
     }
+
     mails = mails.filter(mail => {
         return (
             mail.title.toLowerCase().includes(filterBy.search.toLowerCase()) &&
