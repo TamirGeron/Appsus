@@ -27,9 +27,9 @@ export class AppHeader extends React.Component {
                 <input onChange={this.onChange} type="search" placeholder='Search' />
 
                 <nav className={menuOpenClass}>
-                    <NavLink to="/" exact>Home</NavLink>
-                    <NavLink to="/note">Note</NavLink>
-                    <NavLink to="/mail">Mail</NavLink>
+                    <NavLink onClick={this.toggleMenu} to="/" exact>Home</NavLink>
+                    <NavLink onClick={this.toggleMenu} to="/note">Note</NavLink>
+                    <NavLink onClick={this.toggleMenu} to="/mail">Mail</NavLink>
                 </nav>
                 <button className="btn-toggle-menu" onClick={this.toggleMenu}>{menu}</button>
             </div>
