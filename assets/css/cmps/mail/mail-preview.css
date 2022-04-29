@@ -37,7 +37,6 @@
 }
 
 .mail-preview .main-td .body>* {
-    /* flex-grow: 4; */
     font-size: 10px;
     text-align: center;
     vertical-align: middle;
@@ -46,13 +45,6 @@
 .mail-preview .main-td .mail {
     width: 200px;
 }
-
-/* .mail-preview .main-td .title {
-    width: 200px;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-} */
 
 .mail-preview .main-td .body {
     white-space: nowrap;
@@ -71,4 +63,22 @@
 
 .read {
     font-weight: normal;
+}
+
+@media (max-width: 800px) {
+    .mail-preview .main-td a {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .mail-preview .main-td .title-body {
+        display: block;
+        order: 1
+    }
+
+    .mail-preview .main-td .time {
+        text-align: right;
+    }
+
+
 }
