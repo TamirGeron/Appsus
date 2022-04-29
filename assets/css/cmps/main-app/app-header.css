@@ -1,19 +1,32 @@
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap");
 
 .app-header {
-    display: flex;
+    position: fixed;
+    display: grid;
+    grid-template-columns: 1fr 9fr;
     justify-content: space-between;
     align-items: center;
     background-color: rgb(250, 250, 255);
     border-bottom: solid 0.5px rgba(207, 192, 192, 0.667);
-    margin-bottom: 20px;
-    height: 100px;
+    /* margin-bottom: 20px; */
     font-size: 1.2em;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+.app-header h3 {
+    width: 100px;
+}
+
+.app-header .search-nav {
+    display: flex;
+    justify-content: space-between;
+    padding-left: 20px;
 }
 
 .app-header input {
     color: rgb(110, 90, 90);
-    border:0.5px solid rgb(191, 177, 177);
+    border: 0.5px solid rgb(191, 177, 177);
     background-color: rgb(255, 255, 255);
     border-radius: 10px;
     padding: 2px;
@@ -21,8 +34,8 @@
 
 .app-header>* {
     color: #cfc99a;
-    padding-left: 20px;
 }
+
 .app-header nav>*:not(:last-child) {
     margin-inline-end: 10px;
 }
@@ -43,4 +56,52 @@
 
 .app-header nav>*:hover {
     color: #c6c3b9;
+}
+
+.app-header .btn-toggle-menu {
+    display: none;
+}
+
+@media (max-width: 800px) {
+    header {
+        position: fixed;
+        box-shadow: none;
+        z-index: 1;
+    }
+
+    .app-header nav {
+        position: absolute;
+        bottom: 0;
+        transform: translateY(100%);
+        width: 100%;
+        left: 0;
+        flex-direction: column;
+        max-height: 0;
+        overflow: hidden;
+        justify-content: flex-end;
+        align-items: center;
+        transition: max-height .6s;
+    }
+
+    .app-header .btn-toggle-menu {
+        display: block;
+    }
+
+    .menu-open {
+        display: flex;
+        height: 100vh;
+        box-shadow: 0 0 10px #85888C;
+        margin: -50px 0 0 -50px;
+        padding: 50px;
+        padding-top: 125px;
+        background-color: #F5F6FA;
+        -webkit-font-smoothing: antialiased;
+        transform-origin: 0% 0%;
+        flex-flow: column;
+    }
+
+    .menu-open>* {
+        padding: 10px 0;
+        transition-delay: 2s;
+    }
 }
