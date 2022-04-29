@@ -1,12 +1,15 @@
 .note-filter{
     padding-top: 10px;
-    margin-top: 10px;
+    
     
 }
 
 .note-filter select{
-    border:0.5px solid rgb(191, 177, 177);
-    background-color: rgb(253, 244, 244);
-    border-radius: 10px;
+    border:0.3px solid black;
+    background-color: rgb(245, 242, 241);
+    border-radius: 25px;
     padding: 2px;
+    height: 2.5rem;
+    width: 80px;
+    text-align: center;
 }

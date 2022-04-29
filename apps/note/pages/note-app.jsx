@@ -48,13 +48,12 @@ export class NoteApp extends React.Component {
         noteService.addNote(info, 'note-txt')
             .then(notes => this.setState({ notes }))
     }
-    onAddImg = (ev) => {
-        ev.preventDefault()
-        console.log('img', ev.path.form);
+    onAddImg = (fileName) => {
+        console.log('img', fileName);
 
         const info = {
             title: '*Add title*',
-            url: ev.path.form[1],
+            // url: ev.path[0][1].value,
         }
         noteService.addNote(info, 'note-img' )
             .then(notes => this.setState({ notes }))
@@ -108,6 +107,7 @@ export class NoteApp extends React.Component {
     }
 
 
+
     render() {
         let { notes, selectedNote } = this.state
         document.getElementById('root')
@@ -115,9 +115,11 @@ export class NoteApp extends React.Component {
             <section className="note-app">
                 <NavBar />
                 {!selectedNote && <React.Fragment>
+                    <div className="flex">
                     <NoteFilter filterBy={this.state.filterBy} onSetFilter={this.onSetFilter} />
                     <NoteAdd onAddTodos={this.onAddTodos} onAddImg={this.onAddImg}
                     onAddVideo={this.onAddVideo} onAddTxt={this.onAddTxt} />
+                    </div>
                     <PinnedNoteList onChangeColor={this.onChangeColor} onDelete={this.onDelete} notes={notes}
                         onDuplicateNote={this.onDuplicateNote} onTogglePin={this.onTogglePin} />
                     <UnPinnedNoteList onChangeColor={this.onChangeColor} onDelete={this.onDelete} notes={notes}
