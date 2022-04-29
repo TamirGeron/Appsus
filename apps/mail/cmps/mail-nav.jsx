@@ -3,7 +3,8 @@ import { emailService } from "../services/email.service.js"
 
 export class MailNav extends React.Component {
     state = {
-        unreadMailCount: null
+        unreadMailCount: null,
+        menu: '☰'
     }
 
     removeEvents;
@@ -26,19 +27,33 @@ export class MailNav extends React.Component {
     updateUnread = () => {
         emailService.unreadMailCount()
             .then(unreadMailCount => this.setState({ unreadMailCount }))
+    }
 
+    toggleNav = (action) => {
+        let { menu } = this.state
+        menu = (menu === 'X') ? '☰' : 'X'
+        this.setState({ menu })
+        if (action) this.props.onNavClick(action)
     }
 
     render() {
-        const { unreadMailCount } = this.state
+        const { unreadMailCount, menu } = this.state
+        const navOpenClass = (menu === 'X') ? 'nav-open' : ''
+
         return <section className="mail-nav">
-            < div onClick={() => this.props.onNavClick('inbox')
-            }> Inbox({unreadMailCount})</div >
-            <div onClick={() => this.props.onNavClick('sent')}>Sent</div>
-            <select onChange={() => this.props.onSortBy(event.target.value)}>
-                <option value="sentAt">Date</option>
-                <option value="title">Title</option>
-            </select>
+            <div className={`mail-nav-no-btn ${navOpenClass}`}>
+                {/* < div onClick={() => this.props.onNavClick('inbox') */}
+                < div onClick={() => this.toggleNav('inbox')
+                }> Inbox({unreadMailCount})</div >
+                <div onClick={() => this.toggleNav('sent')}>Sent</div>
+                {/* <div onClick={() => this.props.onNavClick('sent')}>Sent</div> */}
+                <select onChange={() => this.props.onSortBy(event.target.value)}>
+                    <option value="sentAt">Date</option>
+                    <option value="title">Title</option>
+                </select>
+            </div>
+            <button className="btn-toggle-nav" onClick={() => this.toggleNav('')}>{menu}</button>
+
         </section >
     }
 }

@@ -1,7 +1,6 @@
 import { emailService } from "../services/email.service.js"
 import { MailNav } from "../cmps/mail-nav.jsx"
 import { MailSend } from "../cmps/mail-send.jsx"
-import { MessageAction } from "../cmps/message-action.jsx"
 import { eventBusService } from "../../../services/event-bus-service.js"
 import { MailDetail } from "../cmps/mail-details.jsx"
 import { MailList } from "../cmps/mail-list.jsx"
@@ -52,7 +51,7 @@ export class MailIndex extends React.Component {
         const { isSend } = this.state
         return <Router className="mail-index">
             <div className="nav-inbox">
-                <div>
+                <div className="send-nav">
                     <button className="send-btn" onClick={() => this.toggleSend()}>+ Compose</button>
                     <MailNav onNavClick={this.onNavClick} onSortBy={this.onSortBy} />
                 </div>

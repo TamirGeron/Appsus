@@ -44,5 +44,21 @@
         bottom: 50px;
         right: 50px;
         z-index: 1;
-    } 
+    }
+
+    .nav-inbox .send-nav {
+        position: absolute;
+    }
+
+    .nav-inbox {
+        display: grid;
+        grid-template-columns: 1fr;
+    }
+
+    .nav-inbox .btn-toggle-nav {
+        position: absolute;
+        top: 40px;
+        left: 20px;
+        transform: translate(0%, -50%);
+    }
 }

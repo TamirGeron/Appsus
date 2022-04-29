@@ -6,3 +6,39 @@
 .mail-nav>* {
     cursor: pointer;
 }
+
+.mail-nav .btn-toggle-nav {
+    display: none;
+}
+
+@media (max-width: 800px) {
+    .mail-nav .mail-nav-no-btn {
+        transform: translateY(80px);
+        width: 100%;
+        left: 0;
+        flex-direction: column;
+        max-height: 0;
+        overflow: hidden;
+        justify-content: flex-end;
+        align-items: center;
+        transition: max-height .6s;
+    }
+
+    .mail-nav .btn-toggle-nav {
+        display: block;
+        position: fixed;        
+    }
+
+    .nav-open {
+        display: flex;
+        box-shadow: 0 0 10px #85888C;
+        margin: -50px 0 0 -50px;
+        padding: 50px;
+        padding-top: 125px;
+        background-color: #F5F6FA;
+        -webkit-font-smoothing: antialiased;
+        transform-origin: 0% 0%;
+        position: fixed;
+        z-index: 1;
+    }
+}
