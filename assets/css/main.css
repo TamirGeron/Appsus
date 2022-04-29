@@ -16,6 +16,7 @@
 /* Cmps */
 /* main app */
 @import './cmps/main-app/app-header.css';
+@import './cmps/main-app/app-footer.css';
 
 /* mail-app */
 @import './cmps/mail/mail-list.css';

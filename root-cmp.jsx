@@ -3,6 +3,7 @@ import { MailIndex } from './apps/mail/pages/mail-index.jsx'
 import { AppHome } from './pages/app-home.jsx'
 import { AppHeader } from './cmps/app-header.jsx'
 import { NoteDetails } from './apps/note/pages/note-details.jsx'
+import { AppFooter } from './cmps/app-footer.jsx'
 
 
 const Router = ReactRouterDOM.HashRouter
@@ -19,6 +20,7 @@ export function Main() {
                 <Route path="/" component={AppHome} />
             </Switch>
         </section>
+        <AppFooter />
         {/* <UserMsg /> */}
     </Router>
 }
