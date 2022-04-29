@@ -48,17 +48,16 @@ export class NoteApp extends React.Component {
         noteService.addNote(info, 'note-txt')
             .then(notes => this.setState({ notes }))
     }
-    // onAddImg = (ev) => {
-    //     ev.preventDefault()
-    //     console.log('img', ev.target[1]);
+    onAddImg = (fileName) => {
+        console.log('img', fileName);
 
-    //     const info = {
-    //         title: '*Add title*',
-    //         // url: ev.path[0][1].value,
-    //     }
-    //     noteService.addNote(info, 'note-img' )
-    //         .then(notes => this.setState({ notes }))
-    // }
+        const info = {
+            title: '*Add title*',
+            // url: ev.path[0][1].value,
+        }
+        noteService.addNote(info, 'note-img' )
+            .then(notes => this.setState({ notes }))
+    }
     onAddVideo = (ev) => {
         ev.preventDefault()
         console.log('ev', ev.path);
@@ -116,9 +115,11 @@ export class NoteApp extends React.Component {
             <section className="note-app">
                 <NavBar />
                 {!selectedNote && <React.Fragment>
+                    <div className="flex">
                     <NoteFilter filterBy={this.state.filterBy} onSetFilter={this.onSetFilter} />
                     <NoteAdd onAddTodos={this.onAddTodos} onAddImg={this.onAddImg}
                     onAddVideo={this.onAddVideo} onAddTxt={this.onAddTxt} />
+                    </div>
                     <PinnedNoteList onChangeColor={this.onChangeColor} onDelete={this.onDelete} notes={notes}
                         onDuplicateNote={this.onDuplicateNote} onTogglePin={this.onTogglePin} />
                     <UnPinnedNoteList onChangeColor={this.onChangeColor} onDelete={this.onDelete} notes={notes}
