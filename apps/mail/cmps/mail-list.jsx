@@ -2,6 +2,7 @@ import { ReadMailList } from "./read-mail-list.jsx";
 import { UnreadMailList } from "./unread-mail-list.jsx";
 import { emailService } from "../services/email.service.js";
 import { eventBusService } from "../../../services/event-bus-service.js";
+import { MessageAction } from "./message-action.jsx";
 
 export class MailList extends React.Component {
     state = {
@@ -23,9 +24,9 @@ export class MailList extends React.Component {
             )
         }
         )
-        this.removeEvent = eventBusService.on('delete', (lbl) => {
-            this.onDelete()
-        })
+        // this.removeEvent = eventBusService.on('delete', (lbl) => {
+        //     this.onDelete()
+        // })
         this.removeEvent = eventBusService.on('nav', (nav) => {
             this.onNavClick(nav)
         })
@@ -58,7 +59,6 @@ export class MailList extends React.Component {
     }
 
     onDelete = () => {
-        console.log(this.state.mails);
         emailService.deleteMails(this.state.selectIds)
         this.loadMails()
     }
@@ -78,6 +78,7 @@ export class MailList extends React.Component {
         const readOrSent = (filterBy.ctgs[0] === 'inbox') ? 'Read' : 'Sent'
 
         return <section className="mail-list">
+            <MessageAction onDelete={() => this.onDelete} />
             {(filterBy.ctgs[0] !== 'sent') && <UnreadMailList mails={mails} onSelect={this.onSelect} />}
             <h1>{readOrSent}</h1>
             <ReadMailList mails={mails} onSelect={this.onSelect} />

@@ -40,9 +40,9 @@ export class MailIndex extends React.Component {
             })
     }
 
-    onDelete = () => {
-        eventBusService.emit('delete', 'start')
-    }
+    // onDelete = () => {
+    //     eventBusService.emit('delete', 'start')
+    // }
 
     onNavClick = (nav) => {
         eventBusService.emit('nav', nav)
@@ -55,7 +55,7 @@ export class MailIndex extends React.Component {
     render() {
         const { isSend } = this.state
         return <Router className="mail-index">
-            <MessageAction onDelete={() => this.onDelete} />
+            {/* <MessageAction onDelete={() => this.onDelete} /> */}
             <div className="nav-inbox">
                 <div>
                     <button className="send-btn" onClick={() => this.toggleSend()}>+ Compose</button>

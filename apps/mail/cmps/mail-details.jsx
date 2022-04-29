@@ -1,5 +1,6 @@
 import { emailService } from "../services/email.service.js"
 import { eventBusService } from "../../../services/event-bus-service.js"
+import { MessageAction } from "./message-action.jsx"
 
 export class MailDetail extends React.Component {
     state = {
@@ -26,12 +27,18 @@ export class MailDetail extends React.Component {
         this.props.history.push(`/mail`)
     }
 
+    onDelete = () => {
+        emailService.deleteMails([this.state.mail.id])
+        this.props.history.push(`/mail`)
+    }
+
 
     render() {
         const { mail } = this.state
         const mailTime = emailService.before(mail.sentAt)
 
         return <section className="mail-detail">
+            <MessageAction onDelete={() => this.onDelete} />
             <h1>Title: {mail.title}</h1>
             <div className="mail-detail-title">
                 <h1>From: {mail.mail}</h1>

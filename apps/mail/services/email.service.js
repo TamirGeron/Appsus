@@ -90,7 +90,6 @@ function getSelectedIds(mailId, selectIds) {
 }
 
 function deleteMails(selectIds) {
-    console.log(selectIds);
     let mails = storageService.loadFromStorage(MAILKEY)
     selectIds.map(id => {
         const mailIdx = mails.findIndex(mail => {
