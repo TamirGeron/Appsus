@@ -22,11 +22,8 @@ export class MailList extends React.Component {
         this.removeEvent = eventBusService.on('search', (search) => {
             this.setState((prevState) => ({ filterBy: { ...prevState.filterBy, search } }), () => this.loadMails()
             )
-        }
-        )
-        // this.removeEvent = eventBusService.on('delete', (lbl) => {
-        //     this.onDelete()
-        // })
+        })
+
         this.removeEvent = eventBusService.on('nav', (nav) => {
             this.onNavClick(nav)
         })

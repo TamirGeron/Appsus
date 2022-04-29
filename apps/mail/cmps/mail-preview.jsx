@@ -10,8 +10,10 @@ export function MailPreview({ mail, onSelect }) {
         <td className="main-td">
             <Link to={`/mail/${mail.id}`}>
                 <div className="mail">{mail.mail}</div>
-                <div className="title">{mail.title}</div>
-                <div className="body">{mail.body}</div>
+                <div className="title-body">
+                    <div className="title">{mail.title} </div>
+                    <div className="body"><label> -{mail.body}</label></div>
+                </div>
                 <div className="time">{time}</div>
             </Link >
         </td>
