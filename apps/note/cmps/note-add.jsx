@@ -23,7 +23,7 @@ export class NoteAdd extends React.Component {
 
     }
 
-    onAdd = (ev ,value ) => {
+    onAdd = (ev, value) => {
         ev.stopPropagation()
         switch (value) {
             case 'note-txt':
@@ -38,20 +38,26 @@ export class NoteAdd extends React.Component {
         }
     }
 
+    fileSelectHandler = event=>{
+        const{input} = this.state
+        if(input !== 'file') return
+        console.log(event.target.files)
+    }
+
 
     render() {
         const { value, input } = this.state
         let placeholder = value === 'note-txt' ? "Start a note" : "Enter comma separated list"
 
         return <section className="note-add">
-             <form onSubmit={() => this.props.onAddTxt(event, value)}>
-            <label className="add-input">
-                <input type="text" id="add-note" placeholder="Any thoughts today?" name="note-add" />
-            </label>
-            <label className="add-input">
-                <input type="text" id="add-note" placeholder="Text body" name="note-add" />
-            </label>
-                    <button>Save</button>
+            <form onSubmit={() => this.props.onAddTxt(event, value)}>
+                <label className="add-input">
+                    <input type="text" id="add-note" placeholder="Any thoughts today?" name="note-add" />
+                </label>
+                <label className="add-input">
+                    <input type="text" id="add-note" placeholder="Text body" name="note-add" />
+                </label>
+                <button>Save</button>
             </form>
             <div className="add-imgs">
                 <img onClick={() => this.handleChange('note-img')} className="add-img" src="../../assets/img/imges.svg" alt="" />
@@ -61,11 +67,12 @@ export class NoteAdd extends React.Component {
 
             <div className="add-modal">
                 <form onSubmit={() => this.onAdd(event, value)}>
-            <label className="title"></label>
-                <input type="text" id="add-title" placeholder="title" name="note-title" />
-                    {/* <label className="note-add"></label> */}
-                        <input type={input} id="add-note" placeholder={placeholder} name="note-add" />
-                    
+                    <label className="title">
+                        <input type="text" id="add-title" placeholder="title" name="note-title" />
+                    </label>
+                    <label className="note-add">
+                        <input type={input} onChange={this.fileSelectHandler} placeholder={placeholder} name="note-add" />
+                    </label>
                     <button>Save</button>
                 </form>
             </div>
@@ -76,22 +83,9 @@ export class NoteAdd extends React.Component {
 
 
 
-// function onImgInput(ev) {
-    //     loadImageFromInput(ev, renderImg)
+// onImgInput = (ev) => {
+//     loadImageFromInput(ev, renderImg)
 // }
 
-// function loadImageFromInput(ev, onImageReady) {
-//     document.querySelector('.share-container').innerHTML = ''
-//     var reader = new FileReader()
 
-//     reader.onload = (event) => {
-    //         console.log('onload');
-//         var img = new Image()
-//         // Render on canvas
-//         img.src = event.target.result
-//         img.onload = onImageReady.bind(null, img)
-//     }
-//     console.log('after');
-//     reader.readAsDataURL(ev.target.files[0])
-// }
 

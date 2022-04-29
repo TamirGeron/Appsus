@@ -48,17 +48,17 @@ export class NoteApp extends React.Component {
         noteService.addNote(info, 'note-txt')
             .then(notes => this.setState({ notes }))
     }
-    onAddImg = (ev) => {
-        ev.preventDefault()
-        console.log('img', ev.path.form);
+    // onAddImg = (ev) => {
+    //     ev.preventDefault()
+    //     console.log('img', ev.target[1]);
 
-        const info = {
-            title: '*Add title*',
-            url: ev.path.form[1],
-        }
-        noteService.addNote(info, 'note-img' )
-            .then(notes => this.setState({ notes }))
-    }
+    //     const info = {
+    //         title: '*Add title*',
+    //         // url: ev.path[0][1].value,
+    //     }
+    //     noteService.addNote(info, 'note-img' )
+    //         .then(notes => this.setState({ notes }))
+    // }
     onAddVideo = (ev) => {
         ev.preventDefault()
         console.log('ev', ev.path);
@@ -106,6 +106,7 @@ export class NoteApp extends React.Component {
         noteService.duplicateNote(noteId)
             .then(notes => this.setState({ notes }))
     }
+
 
 
     render() {
