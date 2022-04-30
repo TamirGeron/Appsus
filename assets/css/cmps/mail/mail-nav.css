@@ -13,7 +13,6 @@
 
 @media (max-width: 800px) {
     .mail-nav .mail-nav-no-btn {
-        transform: translateY(80px);
         width: 100%;
         left: 0;
         flex-direction: column;
@@ -24,9 +23,17 @@
         transition: max-height .6s;
     }
 
+    .mail-nav .mail-nav-no-btn {
+        -webkit-transition: all 0.2s ease-in-out;
+        transition: all 0.2s ease-in-out;
+    }
+
+
     .mail-nav .btn-toggle-nav {
         display: block;
-        position: fixed;        
+        position: fixed;
+        z-index: 2;
+
     }
 
     .nav-open {
@@ -38,6 +45,12 @@
         background-color: #F5F6FA;
         -webkit-font-smoothing: antialiased;
         transform-origin: 0% 0%;
+        position: fixed;
+        z-index: 1;
+    }
+
+    .mail-nav {
+        top: 40px;
         position: fixed;
         z-index: 1;
     }

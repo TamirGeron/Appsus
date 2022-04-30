@@ -65,7 +65,6 @@
 
 @media (max-width: 800px) {
     .app-header nav {
-        transform: translateY(80px);
         width: 100%;
         left: 0;
         flex-direction: column;
@@ -78,6 +77,11 @@
 
     .app-header .btn-toggle-menu {
         display: block;
+        position: fixed;
+        top: 40px;
+        right: 20px;
+        transform: translate(0%, -50%);
+        z-index: 2;
     }
 
     .menu-open {
@@ -96,5 +100,21 @@
     .menu-open>* {
         padding: 10px 0;
         transition-delay: 2s;
+    }
+
+    .app-header {
+        display: block;
+        text-align: center;
+    }
+
+    .app-header h3 {
+        margin: auto;
+        padding-top: 10px;
+    }
+
+    .app-header .search-nav {
+        display: block;
+        padding:0;
+        padding-top: 10px;
     }
 }
