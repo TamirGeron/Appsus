@@ -19,3 +19,7 @@
     display: grid;
     grid-template-columns: 1fr 1fr;
 }
+
+.app-home img {
+    height: 75vh;
+}
