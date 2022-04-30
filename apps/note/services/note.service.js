@@ -9,6 +9,8 @@ export const noteService = {
     getById,
     duplicateNote,
     togglePin,
+    getColors,
+    getStyle
 }
 
 
@@ -138,4 +140,12 @@ function _saveToStorage(books) {
 
 function _loadFromStorage() {
     return storageService.loadFromStorage(KEY)
+}
+
+function getColors() {
+    return ['#B4FF9F', '#F9FFA4', '#FFD59E', '#FFA1A1']
+}
+
+function getStyle() {
+    return ['Ariel', 'Georgia', 'Times New Roman', 'Helvetica', 'Impact', 'Verdana']
 }

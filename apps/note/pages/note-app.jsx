@@ -110,7 +110,7 @@ export class NoteApp extends React.Component {
 
     render() {
         let { notes, selectedNote } = this.state
-        document.getElementById('root')
+        // document.getElementById('root')
         return (
             <section className="note-app">
                 <NavBar />

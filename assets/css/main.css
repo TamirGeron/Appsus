@@ -34,6 +34,7 @@
 @import './cmps/notes/dynamic-cmps/note-todos.css';
 @import './cmps/notes/unpinned-note-list.css';
 @import './cmps/notes/pinned-note-list.css';
+@import './cmps/notes/style-input.css';
 
 
 /* @import './cmps/book-list.css';
