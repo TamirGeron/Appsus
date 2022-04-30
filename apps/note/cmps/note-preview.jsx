@@ -36,7 +36,7 @@ export class NotePreview extends React.Component {
     }
 
     render() {
-        const { note, onDelete, onTogglePin, onDuplicateNote } = this.props
+        const { toMail, note, onDelete, onTogglePin, onDuplicateNote } = this.props
         let togglePin = (note.isPinned) ? 'pined' : 'unpined';
         const { backgroundColor, isChangeBg, isChangeStyle, fontFamily } = this.state
 
@@ -48,6 +48,7 @@ export class NotePreview extends React.Component {
                 <button ><img onClick={() => onDuplicateNote(note.id)} className="settings-img" src="../../assets/img/clone.svg" alt="" /></button>
                 <button ><img onClick={() => this.onChangeColor()} className="settings-img" src="../../assets/img/palette-solid.svg" alt="" /></button>
                 <button><img onClick={() => this.onChangeStyle()} className="settings-img" src="../../assets/img/font-solid.svg" alt="" /></button>
+                <button onClick={() => toMail(note.info)}>To Mail</button>
             </div>
             {isChangeBg && <ColorInput toggleColor={this.toggleColor} handleStyleChange={this.handleStyleChange} />}
             {isChangeStyle && <StyleInput toggleStyle={this.toggleStyle} handleStyleChange={this.handleStyleChange} />}

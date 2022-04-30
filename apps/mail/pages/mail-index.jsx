@@ -42,7 +42,6 @@ export class MailIndex extends React.Component {
     toggleSend = () => {
         const { inputValue } = this.state
         const isSend = inputValue.isSend
-        console.log(isSend);
         this.setState((prevState) => ({ inputValue: { ...prevState.inputValue, isSend: !isSend } }), () => {
             this.setUrl(this.state.inputValue)
         })

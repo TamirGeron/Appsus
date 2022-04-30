@@ -34,6 +34,7 @@ export class NoteAdd extends React.Component {
     }
 
     onAdd = (ev) => {
+        console.log(ev);
         ev.stopPropagation()
         ev.preventDefault()
         const { value } = this.state
@@ -52,7 +53,7 @@ export class NoteAdd extends React.Component {
     }
 
     fileSelectHandler = (ev, inputValue) => {
-        if (this.state !== 'file') {
+        if (this.state.input !== 'file') {
             this.handleInputChange(ev, 'body', inputValue)
             return
         }

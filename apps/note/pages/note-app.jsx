@@ -50,8 +50,6 @@ export class NoteApp extends React.Component {
 
     onAddTxt = (ev) => {
         ev.preventDefault()
-        console.log('ev', ev.path);
-
         const info = {
             title: ev.target[0].value,
             txt: ev.target[1].value,
@@ -80,10 +78,8 @@ export class NoteApp extends React.Component {
     }
     onAddTodos = (ev) => {
         ev.preventDefault()
-        console.log('ev', ev.path);
 
         let txts = ev.target[1].value.split(',')
-        console.log(txts);
 
         let todos = txts.map(txt => { return { txt, doneAt: new Date() } })
         const info = {
@@ -116,10 +112,23 @@ export class NoteApp extends React.Component {
     }
 
     setUrl = (inputValue) => {
+        console.log(inputValue); 
         this.setState({ inputValue })
         const urlSrcPrm = new URLSearchParams(inputValue)
         const searchStr = urlSrcPrm.toString()
         this.props.history.push(`/note?${searchStr}`)
+    }
+
+    toMail = (inputValue) => {
+        if (!inputValue.txt) return
+        const urlObject = {
+            isSend: true,
+            title: inputValue.title,
+            body: inputValue.txt
+        }
+        const urlSrcPrm = new URLSearchParams(urlObject)
+        const searchStr = urlSrcPrm.toString()
+        this.props.history.push(`/mail?${searchStr}`)
     }
 
     render() {
@@ -133,9 +142,9 @@ export class NoteApp extends React.Component {
                         <NoteAdd onAddTodos={this.onAddTodos} onAddImg={this.onAddImg}
                             onAddVideo={this.onAddVideo} onAddTxt={this.onAddTxt} setUrl={this.setUrl} inputValue={this.state.inputValue} />
                     </div>
-                    <PinnedNoteList onChangeColor={this.onChangeColor} onDelete={this.onDelete} notes={notes}
+                    <PinnedNoteList toMail={this.toMail} onChangeColor={this.onChangeColor} onDelete={this.onDelete} notes={notes}
                         onDuplicateNote={this.onDuplicateNote} onTogglePin={this.onTogglePin} />
-                    <UnPinnedNoteList onChangeColor={this.onChangeColor} onDelete={this.onDelete} notes={notes}
+                    <UnPinnedNoteList toMail={this.toMail} onChangeColor={this.onChangeColor} onDelete={this.onDelete} notes={notes}
                         onDuplicateNote={this.onDuplicateNote} onTogglePin={this.onTogglePin} />
                 </React.Fragment>
                 }

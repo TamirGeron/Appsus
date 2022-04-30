@@ -48,7 +48,7 @@ function addNote(info, type) {
         isPinned: false,
         info,
     }
-    notes.push(note)
+    notes.unshift(note)
     _saveToStorage(notes)
     return Promise.resolve(notes)
 }
