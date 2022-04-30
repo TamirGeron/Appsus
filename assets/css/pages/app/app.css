@@ -17,9 +17,10 @@
 
 .app-home .link{
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr;
 }
 
 .app-home img {
     height: 75vh;
+    width: 100%;
 }
