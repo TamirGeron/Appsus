@@ -41,7 +41,7 @@
 @media (max-width: 800px) {
     .nav-inbox .send-btn {
         position: fixed;
-        bottom: 50px;
+        bottom: 100px;
         right: 50px;
         z-index: 1;
     }
