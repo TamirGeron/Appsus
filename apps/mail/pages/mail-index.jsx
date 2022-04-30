@@ -10,7 +10,12 @@ const { Route, Switch } = ReactRouterDOM
 
 export class MailIndex extends React.Component {
     state = {
-        isSend: false,
+        inputValue: {
+            isSend: false,
+            mail: '',
+            title: '',
+            body: ''
+        },
         filterBy: {
             search: '',
             ctgs: ['inbox']
@@ -20,13 +25,37 @@ export class MailIndex extends React.Component {
     removeEvent;
 
     componentDidMount() {
+        const urlSrcPrm = new URLSearchParams(this.props.location.search)
+        let inputValue = {}
+        for (var value of urlSrcPrm.keys()) {
+            inputValue[value] = urlSrcPrm.get(value);
+        }
+        if (!Object.keys(inputValue)) inputValue = null
+        this.setState({ inputValue })
+
+
         this.removeEvent = eventBusService.on('onSend', (ev) => {
             this.onSend(ev, false)
         })
     }
 
     toggleSend = () => {
-        this.setState({ isSend: !this.state.isSend })
+        const { inputValue } = this.state
+        const isSend = inputValue.isSend
+        console.log(isSend);
+        this.setState((prevState) => ({ inputValue: { ...prevState.inputValue, isSend: !isSend } }), () => {
+            this.setUrl(this.state.inputValue)
+        })
+    }
+
+    setUrl = (inputValue) => {
+        const { isSend } = this.state.inputValue
+        if (!isSend) this.props.history.push(`/mail`)
+        else {
+            const urlSrcPrm = new URLSearchParams(inputValue)
+            const searchStr = urlSrcPrm.toString()
+            this.props.history.push(`/mail?${searchStr}`)
+        }
     }
 
     onSend = (ev, isOpen = true) => {
@@ -48,7 +77,8 @@ export class MailIndex extends React.Component {
     }
 
     render() {
-        const { isSend } = this.state
+        const { inputValue } = this.state
+        const isSend = inputValue.isSend
         return <Router className="mail-index">
             <div className="nav-inbox">
                 <div className="send-nav">
@@ -59,7 +89,7 @@ export class MailIndex extends React.Component {
                     <Route path="/mail/:mailId" component={MailDetail} />
                     <Route path="/mail" component={MailList} />
                 </Switch>
-                {isSend && <MailSend toggleSend={this.toggleSend} onSend={this.onSend} />}
+                {isSend && <MailSend inputValue={inputValue} setUrl={this.setUrl} toggleSend={this.toggleSend} onSend={this.onSend} />}
             </div>
         </Router >
     }
