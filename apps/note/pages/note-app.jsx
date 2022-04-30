@@ -112,7 +112,7 @@ export class NoteApp extends React.Component {
     }
 
     setUrl = (inputValue) => {
-        console.log(inputValue); 
+        console.log(inputValue);
         this.setState({ inputValue })
         const urlSrcPrm = new URLSearchParams(inputValue)
         const searchStr = urlSrcPrm.toString()
@@ -142,10 +142,12 @@ export class NoteApp extends React.Component {
                         <NoteAdd onAddTodos={this.onAddTodos} onAddImg={this.onAddImg}
                             onAddVideo={this.onAddVideo} onAddTxt={this.onAddTxt} setUrl={this.setUrl} inputValue={this.state.inputValue} />
                     </div>
-                    <PinnedNoteList toMail={this.toMail} onChangeColor={this.onChangeColor} onDelete={this.onDelete} notes={notes}
-                        onDuplicateNote={this.onDuplicateNote} onTogglePin={this.onTogglePin} />
-                    <UnPinnedNoteList toMail={this.toMail} onChangeColor={this.onChangeColor} onDelete={this.onDelete} notes={notes}
-                        onDuplicateNote={this.onDuplicateNote} onTogglePin={this.onTogglePin} />
+                    <div className="note-main">
+                        <PinnedNoteList toMail={this.toMail} onChangeColor={this.onChangeColor} onDelete={this.onDelete} notes={notes}
+                            onDuplicateNote={this.onDuplicateNote} onTogglePin={this.onTogglePin} />
+                        <UnPinnedNoteList toMail={this.toMail} onChangeColor={this.onChangeColor} onDelete={this.onDelete} notes={notes}
+                            onDuplicateNote={this.onDuplicateNote} onTogglePin={this.onTogglePin} />
+                    </div>
                 </React.Fragment>
                 }
                 {selectedNote && <NoteDetails />}
