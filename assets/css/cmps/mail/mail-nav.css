@@ -11,6 +11,27 @@
     display: none;
 }
 
+.mail-nav .inbox {
+    display: flex;
+    justify-content: space-between;
+}
+
+.mail-nav .mail-nav-no-btn>* {
+    height: 30px;
+    padding-left: 10px;
+    padding-right: 10px;
+    border-radius: 0 16px 16px 0;
+    width: 100%;
+}
+
+.mail-nav .mail-nav-no-btn>*:hover {
+    background-color: #e8eaed;
+}
+
+.mail-nav .mail-nav-no-btn>*:active {
+    background-color: #e8eaed;
+}
+
 @media (max-width: 800px) {
     .mail-nav .mail-nav-no-btn {
         width: 100%;

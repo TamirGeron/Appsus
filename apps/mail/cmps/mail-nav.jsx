@@ -42,11 +42,11 @@ export class MailNav extends React.Component {
 
         return <section className="mail-nav">
             <div className={`mail-nav-no-btn ${navOpenClass}`}>
-                {/* < div onClick={() => this.props.onNavClick('inbox') */}
-                < div onClick={() => this.toggleNav('inbox')
-                }> Inbox({unreadMailCount})</div >
+                <div className="inbox">
+                    <div onClick={() => this.toggleNav('inbox')}> Inbox</div >
+                    <div>({unreadMailCount})</div>
+                </div>
                 <div onClick={() => this.toggleNav('sent')}>Sent</div>
-                {/* <div onClick={() => this.props.onNavClick('sent')}>Sent</div> */}
                 <select onChange={() => this.props.onSortBy(event.target.value)}>
                     <option value="sentAt">Date</option>
                     <option value="title">Title</option>

@@ -1,3 +1,5 @@
 .mail-list {
     padding-left: 20px;
+    overflow: auto;
+    height: 100vh;
 }

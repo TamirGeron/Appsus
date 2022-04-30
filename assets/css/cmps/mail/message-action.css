@@ -1,3 +1,12 @@
 .message-action {
     text-align: center;
 }
+
+.message-action>* {
+    height: 40px;
+    width: 40px;
+    font-size: 150%;
+    margin: 10px;
+    border-radius: 5px;
+}
+
