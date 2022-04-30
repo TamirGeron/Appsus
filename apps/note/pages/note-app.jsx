@@ -16,17 +16,28 @@ export class NoteApp extends React.Component {
             search: '',
             type: ''
         },
-        selectedNote: null
+        selectedNote: null,
+        inputValue: {
+            title: '',
+            body: ''
+        }
     }
 
     componentDidMount() {
-        this.loadNotes()
+        const urlSrcPrm = new URLSearchParams(this.props.location.search)
+        let inputValue = {}
+        for (var value of urlSrcPrm.keys()) {
+            inputValue[value] = urlSrcPrm.get(value);
+        }
+        if (!Object.keys(inputValue)) inputValue = null
+        this.setState({ inputValue }, () => this.loadNotes())
+
         this.removeEvent = eventBusService.on('search', (search) => {
             this.setState((prevState) => ({ filterBy: { ...prevState.filterBy, search } }), () => this.loadNotes())
         })
     }
 
-    loadNotes = () => {
+    loadNotes() {
         noteService.query(this.state.filterBy)
             .then(notes => this.setState({ notes }))
     }
@@ -48,14 +59,12 @@ export class NoteApp extends React.Component {
         noteService.addNote(info, 'note-txt')
             .then(notes => this.setState({ notes }))
     }
-    onAddImg = (fileName) => {
-        console.log('img', fileName);
-
+    onAddImg = (img) => {
         const info = {
             title: '*Add title*',
-            // url: ev.path[0][1].value,
+            url: img.src,
         }
-        noteService.addNote(info, 'note-img' )
+        noteService.addNote(info, 'note-img')
             .then(notes => this.setState({ notes }))
     }
     onAddVideo = (ev) => {
@@ -66,7 +75,7 @@ export class NoteApp extends React.Component {
             title: ev.target[0].value,
             txt: ev.target[1].value,
         }
-        noteService.addNote(info,'note-video')
+        noteService.addNote(info, 'note-video')
             .then(notes => this.setState({ notes }))
     }
     onAddTodos = (ev) => {
@@ -75,7 +84,7 @@ export class NoteApp extends React.Component {
 
         let txts = ev.target[1].value.split(',')
         console.log(txts);
-        
+
         let todos = txts.map(txt => { return { txt, doneAt: new Date() } })
         const info = {
             title: ev.target[0].value,
@@ -106,19 +115,23 @@ export class NoteApp extends React.Component {
             .then(notes => this.setState({ notes }))
     }
 
-
+    setUrl = (inputValue) => {
+        this.setState({ inputValue })
+        const urlSrcPrm = new URLSearchParams(inputValue)
+        const searchStr = urlSrcPrm.toString()
+        this.props.history.push(`/note?${searchStr}`)
+    }
 
     render() {
-        let { notes, selectedNote } = this.state
-        // document.getElementById('root')
+        let { notes, selectedNote, inputValue } = this.state
         return (
             <section className="note-app">
                 <NavBar />
                 {!selectedNote && <React.Fragment>
                     <div className="flex">
-                    <NoteFilter filterBy={this.state.filterBy} onSetFilter={this.onSetFilter} />
-                    <NoteAdd onAddTodos={this.onAddTodos} onAddImg={this.onAddImg}
-                    onAddVideo={this.onAddVideo} onAddTxt={this.onAddTxt} />
+                        <NoteFilter inputValue={inputValue} filterBy={this.state.filterBy} onSetFilter={this.onSetFilter} />
+                        <NoteAdd onAddTodos={this.onAddTodos} onAddImg={this.onAddImg}
+                            onAddVideo={this.onAddVideo} onAddTxt={this.onAddTxt} setUrl={this.setUrl} inputValue={this.state.inputValue} />
                     </div>
                     <PinnedNoteList onChangeColor={this.onChangeColor} onDelete={this.onDelete} notes={notes}
                         onDuplicateNote={this.onDuplicateNote} onTogglePin={this.onTogglePin} />

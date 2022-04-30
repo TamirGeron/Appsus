@@ -22,7 +22,6 @@ export class NotePreview extends React.Component {
     }
 
     handleStyleChange = (field, value) => {
-        console.log(value);
         this.setState({ [field]: value })
     }
 
