@@ -32,13 +32,23 @@ export class MailDetail extends React.Component {
         this.props.history.push(`/mail`)
     }
 
+    toKeep = () => {
+        const { mail } = this.state
+        const inputValue = {
+            title: mail.title,
+            body: mail.body
+        }
+        const urlSrcPrm = new URLSearchParams(inputValue)
+        const searchStr = urlSrcPrm.toString()
+        this.props.history.push(`/note?${searchStr}`)
+    }
 
     render() {
         const { mail } = this.state
         const mailTime = emailService.before(mail.sentAt)
 
         return <section className="mail-detail">
-            <MessageAction onDelete={() => this.onDelete} />
+            <MessageAction toKeep={() => this.toKeep} onDelete={() => this.onDelete} />
             <h1>Title: {mail.title}</h1>
             <div className="mail-detail-title">
                 <h1>From: {mail.mail}</h1>
@@ -48,9 +58,9 @@ export class MailDetail extends React.Component {
             <p>{mail.body}</p>
 
             <form onSubmit={() => this.onSend(event)}>
-                <label>To: <input disabled type="text" value={mail.mail} /></label>
+                <label>To: <input disabled type="text" defaultValue={mail.mail} /></label>
                 <br />
-                <label>Title: <input disabled type="text" value={mail.title} /></label>
+                <label>Title: <input disabled type="text" defaultValue={mail.title} /></label>
                 <textarea rows="5" cols="10" />
                 <input type="submit" value="Send" />
             </form>
