@@ -52,11 +52,15 @@ export class MailList extends React.Component {
                 this.setState({ selectIds })
                 eventBusService.emit('selectIds', selectIds)
             })
-        console.log(this.state.selectIds);
     }
 
     onDelete = () => {
         emailService.deleteMails(this.state.selectIds)
+        this.loadMails()
+    }
+
+    onRead = () => {
+        emailService.readUnreadMails(this.state.selectIds)
         this.loadMails()
     }
 
@@ -75,7 +79,7 @@ export class MailList extends React.Component {
         const readOrSent = (filterBy.ctgs[0] === 'inbox') ? 'Read' : 'Sent'
 
         return <section className="mail-list">
-            <MessageAction onDelete={() => this.onDelete} />
+            <MessageAction onRead={() => this.onRead} onDelete={() => this.onDelete} />
             {(filterBy.ctgs[0] !== 'sent') && <UnreadMailList mails={mails} onSelect={this.onSelect} />}
             <h1>{readOrSent}</h1>
             <ReadMailList mails={mails} onSelect={this.onSelect} />

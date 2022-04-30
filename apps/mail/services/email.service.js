@@ -12,7 +12,8 @@ export const emailService = {
     filterMailsByIsRead,
     getNavAtCtgs,
     before,
-    markAsRead
+    markAsRead,
+    readUnreadMails
 }
 
 const MAILKEY = 'mailDB'
@@ -96,6 +97,17 @@ function deleteMails(selectIds) {
             return mail.id === id
         })
         mails.splice(mailIdx, 1)
+    })
+    storageService.saveToStorage(MAILKEY, mails)
+}
+
+function readUnreadMails(selectIds) {
+    let mails = storageService.loadFromStorage(MAILKEY)
+    selectIds.map(id => {
+        const mailIdx = mails.findIndex(mail => {
+            return mail.id === id
+        })
+        mails[mailIdx].isRead = !mails[mailIdx].isRead
     })
     storageService.saveToStorage(MAILKEY, mails)
 }
