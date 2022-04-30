@@ -4,8 +4,18 @@
 
 .app .note-main {
     overflow: auto;
-    height: 100vh;
+    height: 50vh;
     width: 100%;
     margin-bottom: 20px;
     position: relative;
+}
+
+.app-home h1 {
+    width: 100%;
+    flex-wrap: wrap;
+}
+
+.app-home .link{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
 }
