@@ -1,24 +1,24 @@
-.note-add{
+.note-add {
     display: flex;
     flex-direction: column;
     align-items: center;
     margin-inline: auto;
 }
 
-.add-txt{
+.add-txt {
     border-radius: 25px;
     border: 0.5px solid black
 }
 
 
-.note-add input{
+.note-add input {
     height: 2.5rem;
     width: 400px;
     display: block;
     align-self: baseline;
 }
 
-.note-add button{
+.note-add button {
     margin: 10px;
     padding: 5px;
     width: 100px;
@@ -27,21 +27,18 @@
     border-radius: 20px;
 }
 
-.add-imgs{
-      display: flex;
+.add-imgs {
+    display: flex;
     width: 100px;
-    top: 126px;
-    position: absolute;
-    top: 23%;
-    right: 27%;
+    padding-bottom: 10px;
 }
 
 
-.add-img{
+.add-img {
     height: 1rem;
 }
 
-.add-imgs-modal{
+.add-imgs-modal {
     display: flex;
     width: 100px;
     top: 126px;
@@ -52,11 +49,10 @@
 }
 
 
-.add-modal{
-    padding-bottom: 24px;
+.add-modal {
+    padding-bottom: 50px;
     background-color: rgb(245 245 245);
     position: absolute;
     top: 17%;
     z-index: 1;
 }
-

@@ -9,12 +9,6 @@ export class NoteAdd extends React.Component {
         }
     }
 
-
-    // componentDidMount() {
-    //     console.log(this.props.inputValue);
-    //     this.setState({ inputValue: this.props.inputValue })
-    // }
-
     handleChange = (value) => {
         this.setState({ value: value, input: this.switchInput(value), modalIsOpen: true })
     }
@@ -91,6 +85,11 @@ export class NoteAdd extends React.Component {
         let placeholder = value === 'note-txt' ? "Start a note" : "Enter comma separated list"
 
         return <section className="note-add">
+            <div className="add-imgs">
+                <img onClick={() => this.handleChange('note-img')} className="add-img" src="../../assets/img/imges.svg" alt="" />
+                <img onClick={() => this.handleChange('note-todos')} className="add-img" src="../../assets/img/todos.svg" alt="" />
+                <img onClick={() => this.handleChange('note-txt')} className="add-img" src="../../assets/img/txt.svg" alt="" />
+            </div>
             <form className="prime-add-txt" onSubmit={() => this.props.onAddTxt(event, value)}>
                 <label className="add-input">
                     <input defaultValue={inputValue.title} onChange={(event) => this.handleInputChange(event, 'title', inputValue)} type="text" className="add-txt" id="add-note" placeholder="Any thoughts today?" name="note-add" />
@@ -100,11 +99,6 @@ export class NoteAdd extends React.Component {
                 </label>
                 <button>Save</button>
             </form>
-            <div className="add-imgs">
-                <img onClick={() => this.handleChange('note-img')} className="add-img" src="../../assets/img/imges.svg" alt="" />
-                <img onClick={() => this.handleChange('note-todos')} className="add-img" src="../../assets/img/todos.svg" alt="" />
-                <img onClick={() => this.handleChange('note-txt')} className="add-img" src="../../assets/img/txt.svg" alt="" />
-            </div>
 
             <div className={`add-modal ${closeModal}`}>
                 <form onSubmit={() => this.onAdd(event)}>
