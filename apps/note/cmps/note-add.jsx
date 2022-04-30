@@ -82,10 +82,11 @@ export class NoteAdd extends React.Component {
         const { value, input, modalIsOpen } = this.state
         const inputValue = this.props.inputValue
         let closeModal = modalIsOpen ? '' : 'none';
+        let showImgs = modalIsOpen ? 'none': '';
         let placeholder = value === 'note-txt' ? "Start a note" : "Enter comma separated list"
 
         return <section className="note-add">
-            <div className="add-imgs">
+            <div className={`add-imgs ${showImgs}`} >
                 <img onClick={() => this.handleChange('note-img')} className="add-img" src="../../assets/img/imges.svg" alt="" />
                 <img onClick={() => this.handleChange('note-todos')} className="add-img" src="../../assets/img/todos.svg" alt="" />
                 <img onClick={() => this.handleChange('note-txt')} className="add-img" src="../../assets/img/txt.svg" alt="" />
@@ -111,11 +112,6 @@ export class NoteAdd extends React.Component {
                     <button>Save</button>
                     <button onClick={() => this.onCloseModal()}>x</button>
                 </form>
-                <div className="add-imgs-modal">
-                    <img onClick={() => this.handleChange('note-img')} className="add-img" src="../../assets/img/imges.svg" alt="" />
-                    <img onClick={() => this.handleChange('note-todos')} className="add-img" src="../../assets/img/todos.svg" alt="" />
-                    <img onClick={() => this.handleChange('note-txt')} className="add-img" src="../../assets/img/txt.svg" alt="" />
-                </div>
             </div>
         </section>
     }

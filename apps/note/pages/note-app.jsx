@@ -1,7 +1,7 @@
 import { noteService } from "../services/note.service.js"
 import { eventBusService } from "../../../services/event-bus-service.js"
 
-import { NavBar } from "../cmps/nav-bar.jsx"
+
 import { NoteDetails } from "./note-details.jsx"
 import { NoteAdd } from "../cmps/note-add.jsx"
 import { UnPinnedNoteList } from "../cmps/note-list-unpined.jsx"
@@ -135,7 +135,6 @@ export class NoteApp extends React.Component {
         let { notes, selectedNote, inputValue } = this.state
         return (
             <section className="note-app">
-                <NavBar />
                 {!selectedNote && <React.Fragment>
                     <div className="flex">
                         <NoteFilter inputValue={inputValue} filterBy={this.state.filterBy} onSetFilter={this.onSetFilter} />
