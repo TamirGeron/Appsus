@@ -1,5 +1,6 @@
 import { eventBusService } from "../../../services/event-bus-service.js"
 import { emailService } from "../services/email.service.js"
+import { MailCtgs } from "./mail-ctgs.jsx";
 
 export class MailNav extends React.Component {
     state = {
@@ -42,11 +43,13 @@ export class MailNav extends React.Component {
 
         return <section className="mail-nav">
             <div className={`mail-nav-no-btn ${navOpenClass}`}>
-                <div className="inbox">
-                    <div onClick={() => this.toggleNav('inbox')}> Inbox</div >
+                <div className="inbox" onClick={() => this.toggleNav('inbox')}>
+                    <div >Inbox   </div >
                     <div>({unreadMailCount})</div>
                 </div>
                 <div onClick={() => this.toggleNav('sent')}>Sent</div>
+                <div className="ctgs">Categories</div>
+                <MailCtgs toggleNav={this.toggleNav} />
                 <select onChange={() => this.props.onSortBy(event.target.value)}>
                     <option value="sentAt">Date</option>
                     <option value="title">Title</option>

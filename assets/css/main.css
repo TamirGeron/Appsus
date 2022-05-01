@@ -1,6 +1,3 @@
-/* @import './setup/variables.css';
-@import './setup/fonts.css'; */
-
 /* Basics */
 
 @import './basics/base.css';
@@ -11,9 +8,8 @@
 @import 'pages/mail/mail-index.css';
 @import 'pages/notes/note-app.css';
 
-/* @import './pages/book-details.css'; */
-
 /* Cmps */
+
 /* main app */
 @import './cmps/main-app/app-header.css';
 @import './cmps/main-app/app-footer.css';
@@ -35,13 +31,3 @@
 @import './cmps/notes/unpinned-note-list.css';
 @import './cmps/notes/pinned-note-list.css';
 @import './cmps/notes/style-input.css';
-
-
-/* @import './cmps/book-list.css';
-@import './cmps/book-preview.css';
-@import './cmps/book-filter.css';
-@import './cmps/book-details.css';
-@import './cmps/app-header.css';
-@import './cmps/review-add.css';
-@import './cmps/show-review.css';
-@import './cmps/book-search.css'; */

@@ -20,11 +20,12 @@ export class AppHeader extends React.Component {
     render() {
         const { menu } = this.state
         const menuOpenClass = (menu === 'X') ? 'menu-open' : ''
+        const arr = window.location.href.split('#')
         return <header className="app-header">
             <h3 >Appsus</h3>
 
             <div className="search-nav">
-                <input onChange={this.onChange} type="search" placeholder='Search' />
+                {arr[arr.length - 1] !== '/' && <input onChange={this.onChange} type="search" placeholder='Search' />}
 
                 <nav className={menuOpenClass}>
                     <NavLink onClick={this.toggleMenu} to="/" exact>Home</NavLink>
