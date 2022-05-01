@@ -1,12 +1,13 @@
 .note-preview{
     position: relative;
-    display: flex;
-    flex-direction: column;
-    background-color: rgb(238, 104, 104);
-    border: 0.5px solid rgb(238, 231, 231);
-    width: 240px;
-    height: 250px;
-    border-radius: 5px;
+        display: inline-block;
+        margin-top: 9px;
+        flex-direction: column;
+        background-color: rgb(238, 104, 104);
+        border: 0.5px solid rgb(238, 231, 231);
+        width: 100%;
+        border-radius: 5px;
+        padding-bottom: 30px;
 }
 
 .note-preview:hover{
@@ -26,12 +27,15 @@
 
 .settings{
     display: flex;
-
     position: absolute;
     bottom: 0;
     right: 0;
+
 }
 
 .settings-img{
     height: 1rem;
 }
+
+
+

@@ -91,7 +91,7 @@ export class NoteAdd extends React.Component {
                 <img onClick={() => this.handleChange('note-todos')} className="add-img" src="../../assets/img/todos.svg" alt="" />
                 <img onClick={() => this.handleChange('note-txt')} className="add-img" src="../../assets/img/txt.svg" alt="" />
             </div>
-            <form className="prime-add-txt" onSubmit={() => this.props.onAddTxt(event, value)}>
+            {/* <form className="prime-add-txt" onSubmit={() => this.props.onAddTxt(event, value)}>
                 <label className="add-input">
                     <input defaultValue={inputValue.title} onChange={(event) => this.handleInputChange(event, 'title', inputValue)} type="text" className="add-txt" id="add-note" placeholder="Any thoughts today?" name="note-add" />
                 </label>
@@ -99,7 +99,7 @@ export class NoteAdd extends React.Component {
                     <input defaultValue={inputValue.body} onChange={(event) => this.handleInputChange(event, 'body', inputValue)} type="text" className="add-txt" id="add-note" placeholder="Text body" name="note-add" />
                 </label>
                 <button>Save</button>
-            </form>
+            </form> */}
 
             <div className={`add-modal ${closeModal}`}>
                 <form onSubmit={() => this.onAdd(event)}>

@@ -1,9 +1,7 @@
 .pinned-note-list{
-    padding: 10px;
     border-bottom: 1px solid rgba(106, 91, 91, 0.713);
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-    gap:10px;
-    /* columns: 240px; */
-    margin-block-start: 10px;
+    columns: 240px auto;
+    column-gap: 1rem;
+    padding: 20px 60px;
+    margin: 0;
 }
