@@ -10,3 +10,7 @@ border-top-right-radius: 5px;
     height: 100%;
 }
 
+.note-img> h1{
+    text-align: center;
+}
+

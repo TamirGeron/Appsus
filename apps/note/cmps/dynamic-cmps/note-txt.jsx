@@ -22,7 +22,7 @@ onSaveEdit= (txt , noteId)=>{
     onInput={e => this.onSaveEdit( e.currentTarget.innerText, id)}>
         <h1 suppressContentEditableWarning="true"
     contentEditable="true" >{title}</h1>
-        <pre suppressContentEditableWarning="true"
+        <pre className="main-txt-note" suppressContentEditableWarning="true"
     contentEditable="true">{txt}</pre>
     </section>
     }
