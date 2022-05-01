@@ -80,9 +80,11 @@ export class MailList extends React.Component {
 
         return <section className="mail-list">
             <MessageAction onRead={() => this.onRead} onDelete={() => this.onDelete} />
-            {(filterBy.ctgs[0] !== 'sent') && <UnreadMailList mails={mails} onSelect={this.onSelect} />}
-            <h1>{readOrSent}</h1>
-            <ReadMailList mails={mails} onSelect={this.onSelect} />
+            <div className="list">
+                {(filterBy.ctgs[0] !== 'sent') && <UnreadMailList mails={mails} onSelect={this.onSelect} />}
+                <h1>{readOrSent}</h1>
+                <ReadMailList mails={mails} onSelect={this.onSelect} />
+            </div>
         </section>
     }
 }
