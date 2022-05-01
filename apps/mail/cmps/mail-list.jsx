@@ -59,6 +59,16 @@ export class MailList extends React.Component {
         this.loadMails()
     }
 
+    onCtg = (ctg) => {
+        if (!ctg) return
+        if (ctg === '+') {
+            ctg = prompt('Category Name?')
+            emailService.addCtg(ctg)
+        }
+        emailService.ctgsMails(this.state.selectIds, ctg)
+        this.loadMails()
+    }
+
     onRead = () => {
         emailService.readUnreadMails(this.state.selectIds)
         this.loadMails()
@@ -72,10 +82,6 @@ export class MailList extends React.Component {
 
     onSortBy = (sortBy) => {
         this.setState({ sortBy }, () => this.loadMails())
-    }
-
-    onCtg = (ctg) => {
-        emailService.deleteMails(this.state.selectIds)
     }
 
     render() {

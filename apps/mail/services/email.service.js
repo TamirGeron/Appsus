@@ -15,6 +15,8 @@ export const emailService = {
     markAsRead,
     readUnreadMails,
     getCtgs,
+    ctgsMails,
+    addCtg
 }
 
 const MAILKEY = 'mailDB'
@@ -103,6 +105,17 @@ function deleteMails(selectIds) {
     storageService.saveToStorage(MAILKEY, mails)
 }
 
+function ctgsMails(selectIds, ctg) {
+    let mails = storageService.loadFromStorage(MAILKEY)
+    selectIds.map(id => {
+        const mailIdx = mails.findIndex(mail => {
+            return mail.id === id
+        })
+        mails[mailIdx].ctgs.push(ctg)
+    })
+    storageService.saveToStorage(MAILKEY, mails)
+}
+
 function readUnreadMails(selectIds) {
     let mails = storageService.loadFromStorage(MAILKEY)
     selectIds.map(id => {
@@ -147,5 +160,10 @@ function getCtgs() {
         storageService.saveToStorage(CTGSKEY, ctgs)
     }
     return ctgs
+}
 
+function addCtg(ctg) {
+    let ctgs = getCtgs()
+    ctgs.push(ctg)
+    storageService.saveToStorage(CTGSKEY, ctgs)
 }
