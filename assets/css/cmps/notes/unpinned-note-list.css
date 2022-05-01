@@ -1,8 +1,18 @@
 .unpinned-note-list{
-    padding: 10px;
-    display: grid;
+    /* padding: 10px;
+    columns: 240px;
+    column-fill: auto;
+    white-space: normal; */
+    /* display: grid;
     grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-    gap:10px;
+    gap:10px; */
     /* margin-bottom: 100px; */
+        margin: auto;
+        columns: 240px auto;
+        column-gap: 0.5rem;
+        padding: 20px 60px;
+        /* margin-top: ; */
+   
+    
    
 }
