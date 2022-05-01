@@ -63,7 +63,7 @@ function deleteNote(noteId) {
     return Promise.resolve(notes)
 }
 
-function removeTodo(todoIdx,noteId) {
+function removeTodo(todoIdx, noteId) {
     let notes = _loadFromStorage()
     const note = notes.find(note => note.id === noteId)
     const todos = note.info.todos
@@ -72,7 +72,7 @@ function removeTodo(todoIdx,noteId) {
     return Promise.resolve(note)
 }
 
-function saveEdit(txt, noteId){
+function saveEdit(txt, noteId) {
     console.log(noteId);
     let notes = _loadFromStorage()
     const note = notes.find(note => note.id === noteId)
@@ -126,18 +126,22 @@ function createNotes() {
             info: {
                 title: 'Fullstack',
                 txt: "Fullstack Me Baby!"
-            }
+            },
+            style: {
+                backgroundColor: "#b4ff9f"
+            },
         },
+
         {
             id: utilService.makeId(),
             type: "note-img",
             isPinned: false,
             info: {
-                url: "../../assets/img/img1.jpg",
+                url: "assets/img/img1.jpg",
                 title: "Carpe diem"
             },
             style: {
-                backgroundColor: "#00d"
+                backgroundColor: "rgb(255 213 158)"
             }
         },
         {
@@ -147,12 +151,62 @@ function createNotes() {
             info: {
                 title: "Get my stuff together",
                 todos: [
-                    { txt: "Driving liscence", doneAt: null, id:utilService.makeId() },
-                    { txt: "Coding power", doneAt: 187111111, id:utilService.makeId() }
+                    { txt: "Driving liscence", doneAt: null, id: utilService.makeId() },
+                    { txt: "Coding power", doneAt: 187111111, id: utilService.makeId() },
+                    { txt: "Wash the dishes", doneAt: 187111111, id: utilService.makeId() },
+                    { txt: "Laundry", doneAt: 187111111, id: utilService.makeId() },
                 ],
-                id:utilService.makeId()
+                id: utilService.makeId()
+            },
+            style: {
+                backgroundColor: "rgb(249 255 164)",
+            },
+        },
+        {
+            id: utilService.makeId(),
+            type: "note-img",
+            isPinned: false,
+            info: {
+                url: "assets/img/spider.jpg",
+                title: "קופצן"
+            },
+            style: {
+                backgroundColor: "rgb(255 213 158)"
             }
-        }
+        },
+
+        {
+            id: utilService.makeId(),
+            type: "note-txt",
+            isPinned: false,
+            info: {
+                title: 'Lord of the rings',
+                txt: `The way is shut. 
+    It was made by those
+     who are Dead, 
+ and the Dead keep it,
+  until the time comes.
+  The way is shut  
+  ― J.R.R. Tolkien`
+            },
+            style: {
+                backgroundColor: "#b4ff9f"
+            }
+
+        },
+
+        {
+            id: utilService.makeId(),
+            type: "note-img",
+            isPinned: false,
+            info: {
+                url: "assets/img/sceliphron_spirifex.jpg",
+                title: "טייחת שחורת חזה"
+            },
+            style: {
+                backgroundColor: "rgb(255 213 158)"
+            }
+        },
     ];
 }
 
