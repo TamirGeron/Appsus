@@ -5,7 +5,7 @@ import { NoteTodos } from "/note-todos.jsx"
 
 
 
-export function DynamicCmp(props) {
+export function DynamicCmp(props, onRemoveTodo) {
     switch (props.type) {
         case 'note-txt':
             return <NoteTxt note={props.note} />

@@ -1,0 +1,14 @@
+.check-todo:checked +  .todo-txt{
+    text-decoration: line-through;
+}
+
+.note-todos>h1{
+    text-align: center;
+}
+
+.note-todos> ul{
+    list-style-type: none;
+    margin-inline-start: 15px;
+}
+
+

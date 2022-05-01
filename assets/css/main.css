@@ -26,6 +26,7 @@
 @import './cmps/notes/note-add.css';
 @import './cmps/notes/note-filter.css';
 @import './cmps/notes/note-preview.css';
+@import './cmps/notes/dynamic-cmps/note-txt.css';
 @import './cmps/notes/dynamic-cmps/note-img.css';
 @import './cmps/notes/dynamic-cmps/note-todos.css';
 @import './cmps/notes/unpinned-note-list.css';

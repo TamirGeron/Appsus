@@ -1,6 +1,6 @@
 import { noteService } from "../services/note.service.js"
 import { eventBusService } from "../../../services/event-bus-service.js"
-
+import { utilService } from "../../../services/util.service.js"
 
 import { NoteDetails } from "./note-details.jsx"
 import { NoteAdd } from "../cmps/note-add.jsx"
@@ -84,11 +84,17 @@ export class NoteApp extends React.Component {
         let todos = txts.map(txt => { return { txt, doneAt: new Date() } })
         const info = {
             title: ev.target[0].value,
-            todos: todos
+            todos: todos,
+            id: utilService.makeId()
         }
 
         noteService.addNote(info, 'note-todos')
             .then(notes => this.setState({ notes }))
+    }
+
+    renderTodoList =()=>{
+        removeTodo()
+        .then(notes => this.setState({ notes }))
     }
 
     onDelete = (noteId) => {
@@ -96,10 +102,6 @@ export class NoteApp extends React.Component {
             .then(notes => this.setState({ notes }))
     }
 
-    onChangeColor = (ev) => {
-        ev.stopPropagation()
-        console.log('hello from color');
-    }
 
     onTogglePin = (noteId) => {
         noteService.togglePin(noteId)
@@ -142,9 +144,9 @@ export class NoteApp extends React.Component {
                             onAddVideo={this.onAddVideo} onAddTxt={this.onAddTxt} setUrl={this.setUrl} inputValue={this.state.inputValue} />
                     </div>
                     <div className="note-main">
-                        <PinnedNoteList toMail={this.toMail} onChangeColor={this.onChangeColor} onDelete={this.onDelete} notes={notes}
+                        <PinnedNoteList onRemoveTodo={this.onRemoveTodo} toMail={this.toMail} onChangeColor={this.onChangeColor} onDelete={this.onDelete} notes={notes}
                             onDuplicateNote={this.onDuplicateNote} onTogglePin={this.onTogglePin} />
-                        <UnPinnedNoteList toMail={this.toMail} onChangeColor={this.onChangeColor} onDelete={this.onDelete} notes={notes}
+                        <UnPinnedNoteList onRemoveTodo={this.onRemoveTodo} toMail={this.toMail} onChangeColor={this.onChangeColor} onDelete={this.onDelete} notes={notes}
                             onDuplicateNote={this.onDuplicateNote} onTogglePin={this.onTogglePin} />
                     </div>
                 </React.Fragment>

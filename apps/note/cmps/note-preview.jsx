@@ -42,12 +42,12 @@ export class NotePreview extends React.Component {
 
         return <div style={{ backgroundColor, fontFamily }} className="note-preview" >
             <button className="close-btn" onClick={() => onDelete(note.id)}>x</button>
-            <DynamicCmp type={note.type} note={note} />
+            <DynamicCmp  type={note.type} note={note} />
             <div className="settings">
                 <button className="pin-btn " onClick={() => onTogglePin(note.id)}><img className={`settings-img ${togglePin}`} src="../../assets/img/tack.svg" alt="" /></button>
-                <button ><img onClick={() => onDuplicateNote(note.id)} className="settings-img" src="../../assets/img/clone.svg" alt="" /></button>
-                <button ><img onClick={() => this.onChangeColor()} className="settings-img" src="../../assets/img/palette-solid.svg" alt="" /></button>
-                <button><img onClick={() => this.onChangeStyle()} className="settings-img" src="../../assets/img/font-solid.svg" alt="" /></button>
+                <button ><img onClick={() => onDuplicateNote(note.id)} className="settings-img" src="assets/img/clone.svg" alt="" /></button>
+                <button ><img onClick={() => this.onChangeColor()} className="settings-img" src="assets/img/palette-solid.svg" alt="" /></button>
+                <button><img onClick={() => this.onChangeStyle()} className="settings-img" src="assets/img/font-solid.svg" alt="" /></button>
                 <button onClick={() => toMail(note.info)}>To Mail</button>
             </div>
             {isChangeBg && <ColorInput toggleColor={this.toggleColor} handleStyleChange={this.handleStyleChange} />}
