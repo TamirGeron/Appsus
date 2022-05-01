@@ -12,25 +12,52 @@ const mails = [
     {
         id: utilService.makeId(),
         mail: 'tamir@gmail.com',
-        title: 'First mail',
+        title: 'Hello',
         body: 'I the first mail',
         isRead: false,
         sentAt: +new Date(),
-        ctgs: ['inbox']
+        ctgs: ['inbox', 'Work']
     },
     {
         id: utilService.makeId(),
         mail: 'shlomo@gmail.com',
-        title: 'First sent mail',
+        title: 'Bye',
         body: 'I the first sent mail',
         isRead: true,
         sentAt: +new Date(),
-        ctgs: ['sent']
+        ctgs: ['sent', 'Work']
     },
     {
         id: utilService.makeId(),
         mail: 'Joni@gmail.com',
-        title: 'another',
+        title: 'I love You',
+        body: 'I another mail',
+        isRead: true,
+        sentAt: +new Date(),
+        ctgs: ['inbox','Vacation']
+    },
+    {
+        id: utilService.makeId(),
+        mail: 'tamir@gmail.com',
+        title: 'why you not call',
+        body: 'I the first mail',
+        isRead: false,
+        sentAt: +new Date(),
+        ctgs: ['inbox','Work']
+    },
+    {
+        id: utilService.makeId(),
+        mail: 'shlomo@gmail.com',
+        title: 'The roof is on fire',
+        body: 'I the first sent mail',
+        isRead: true,
+        sentAt: +new Date(),
+        ctgs: ['sent', 'Vacation']
+    },
+    {
+        id: utilService.makeId(),
+        mail: 'Joni@gmail.com',
+        title: 'Sprint 3',
         body: 'I another mail',
         isRead: true,
         sentAt: +new Date(),
@@ -39,7 +66,7 @@ const mails = [
     {
         id: utilService.makeId(),
         mail: 'tamir@gmail.com',
-        title: 'First mail',
+        title: 'Yalla',
         body: 'I the first mail',
         isRead: false,
         sentAt: +new Date(),
@@ -48,7 +75,7 @@ const mails = [
     {
         id: utilService.makeId(),
         mail: 'shlomo@gmail.com',
-        title: 'First sent mail',
+        title: 'Tov noo',
         body: 'I the first sent mail',
         isRead: true,
         sentAt: +new Date(),
@@ -57,7 +84,7 @@ const mails = [
     {
         id: utilService.makeId(),
         mail: 'Joni@gmail.com',
-        title: 'another',
+        title: 'yes',
         body: 'I another mail',
         isRead: true,
         sentAt: +new Date(),
@@ -66,7 +93,7 @@ const mails = [
     {
         id: utilService.makeId(),
         mail: 'tamir@gmail.com',
-        title: 'First mail',
+        title: 'Why not',
         body: 'I the first mail',
         isRead: false,
         sentAt: +new Date(),
@@ -75,7 +102,7 @@ const mails = [
     {
         id: utilService.makeId(),
         mail: 'shlomo@gmail.com',
-        title: 'First sent mail',
+        title: 'Go to the map',
         body: 'I the first sent mail',
         isRead: true,
         sentAt: +new Date(),
@@ -84,7 +111,7 @@ const mails = [
     {
         id: utilService.makeId(),
         mail: 'Joni@gmail.com',
-        title: 'another',
+        title: 'player number 1',
         body: 'I another mail',
         isRead: true,
         sentAt: +new Date(),
@@ -93,7 +120,7 @@ const mails = [
     {
         id: utilService.makeId(),
         mail: 'tamir@gmail.com',
-        title: 'First mail',
+        title: 'more data base',
         body: 'I the first mail',
         isRead: false,
         sentAt: +new Date(),
@@ -102,7 +129,7 @@ const mails = [
     {
         id: utilService.makeId(),
         mail: 'shlomo@gmail.com',
-        title: 'First sent mail',
+        title: 'here the data base',
         body: 'I the first sent mail',
         isRead: true,
         sentAt: +new Date(),
@@ -111,7 +138,7 @@ const mails = [
     {
         id: utilService.makeId(),
         mail: 'Joni@gmail.com',
-        title: 'another',
+        title: 'so many data base',
         body: 'I another mail',
         isRead: true,
         sentAt: +new Date(),
@@ -120,7 +147,7 @@ const mails = [
     {
         id: utilService.makeId(),
         mail: 'tamir@gmail.com',
-        title: 'First mail',
+        title: 'it still not over',
         body: 'I the first mail',
         isRead: false,
         sentAt: +new Date(),
@@ -129,7 +156,7 @@ const mails = [
     {
         id: utilService.makeId(),
         mail: 'shlomo@gmail.com',
-        title: 'First sent mail',
+        title: 'so many',
         body: 'I the first sent mail',
         isRead: true,
         sentAt: +new Date(),
@@ -138,7 +165,7 @@ const mails = [
     {
         id: utilService.makeId(),
         mail: 'Joni@gmail.com',
-        title: 'another',
+        title: 'HEGANO CVAR',
         body: 'I another mail',
         isRead: true,
         sentAt: +new Date(),
@@ -147,7 +174,7 @@ const mails = [
     {
         id: utilService.makeId(),
         mail: 'tamir@gmail.com',
-        title: 'First mail',
+        title: 'Ko',
         body: 'I the first mail',
         isRead: false,
         sentAt: +new Date(),
@@ -156,7 +183,7 @@ const mails = [
     {
         id: utilService.makeId(),
         mail: 'shlomo@gmail.com',
-        title: 'First sent mail',
+        title: 'HBS',
         body: 'I the first sent mail',
         isRead: true,
         sentAt: +new Date(),
@@ -165,34 +192,7 @@ const mails = [
     {
         id: utilService.makeId(),
         mail: 'Joni@gmail.com',
-        title: 'another',
-        body: 'I another mail',
-        isRead: true,
-        sentAt: +new Date(),
-        ctgs: ['inbox']
-    },
-    {
-        id: utilService.makeId(),
-        mail: 'tamir@gmail.com',
-        title: 'First mail',
-        body: 'I the first mail',
-        isRead: false,
-        sentAt: +new Date(),
-        ctgs: ['inbox']
-    },
-    {
-        id: utilService.makeId(),
-        mail: 'shlomo@gmail.com',
-        title: 'First sent mail',
-        body: 'I the first sent mail',
-        isRead: true,
-        sentAt: +new Date(),
-        ctgs: ['sent']
-    },
-    {
-        id: utilService.makeId(),
-        mail: 'Joni@gmail.com',
-        title: 'another',
+        title: 'EIMPERIA',
         body: 'I another mail',
         isRead: true,
         sentAt: +new Date(),

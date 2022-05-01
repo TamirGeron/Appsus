@@ -8,7 +8,7 @@
 }
 
 .mail-detail form {
-    text-align: center;
+    /* text-align: center; */
     margin-top: 100px;
     width: 80%;
     margin-left: auto;
@@ -17,4 +17,11 @@
 
 .mail-detail textarea {
     width: 100%;
+}
+
+.mail-detail .detail-body {
+    padding-left: 20px;
+    overflow: auto;
+    position: relative;
+    height: 90%;
 }

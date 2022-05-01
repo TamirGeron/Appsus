@@ -1,5 +1,6 @@
 .message-action {
     text-align: center;
+    height: 70px;
 }
 
 .message-action>* {
@@ -14,7 +15,7 @@
     display: inline-block;
 }
 
-.message-action .input-container{
+.message-action .input-container {
     position: absolute;
-    
+
 }

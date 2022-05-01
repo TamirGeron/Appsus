@@ -2,7 +2,24 @@
     height: 80vh;
 }
 
-.mail-list .list{
+.mail-list .sort-by {
+    height: 70px;
+    padding-left: 20px;
+    display: flex;
+    align-items: flex-end;
+}
+
+.mail-list .sort-by .unselected {
+    cursor: pointer;
+    color: blue
+}
+
+.mail-list .sort-by .selected {
+    cursor: default;
+    color: black;
+}
+
+.mail-list .list {
     padding-left: 20px;
     overflow: auto;
     position: relative;
