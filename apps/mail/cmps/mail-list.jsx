@@ -74,12 +74,16 @@ export class MailList extends React.Component {
         this.setState({ sortBy }, () => this.loadMails())
     }
 
+    onCtg = (ctg) => {
+        emailService.deleteMails(this.state.selectIds)
+    }
+
     render() {
         const { mails, filterBy } = this.state
         const readOrSent = (filterBy.ctgs[0] === 'inbox') ? 'Read' : 'Sent'
 
         return <section className="mail-list">
-            <MessageAction onRead={() => this.onRead} onDelete={() => this.onDelete} />
+            <MessageAction onCtg={this.onCtg} onRead={() => this.onRead} onDelete={() => this.onDelete} />
             <div className="list">
                 {(filterBy.ctgs[0] !== 'sent') && <UnreadMailList mails={mails} onSelect={this.onSelect} />}
                 <h1>{readOrSent}</h1>

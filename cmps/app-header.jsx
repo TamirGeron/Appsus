@@ -21,8 +21,6 @@ export class AppHeader extends React.Component {
         const { menu } = this.state
         const menuOpenClass = (menu === 'X') ? 'menu-open' : ''
         const arr = window.location.href.split('#')
-        console.log(arr);
-        console.log(arr[arr.length - 1]);
         return <header className="app-header">
             <h3 >Appsus</h3>
 

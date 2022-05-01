@@ -13,10 +13,12 @@ export const emailService = {
     getNavAtCtgs,
     before,
     markAsRead,
-    readUnreadMails
+    readUnreadMails,
+    getCtgs,
 }
 
 const MAILKEY = 'mailDB'
+const CTGSKEY = 'ctgDB'
 
 function query(filterBy, sortBy) {
     let mails = storageService.loadFromStorage(MAILKEY)
@@ -136,4 +138,14 @@ function markAsRead(mailId) {
     const mailIdx = mails.findIndex(mail => mailId === mail.id)
     mails[mailIdx].isRead = true
     storageService.saveToStorage(MAILKEY, mails)
+}
+
+function getCtgs() {
+    let ctgs = storageService.loadFromStorage(CTGSKEY)
+    if (!ctgs || ctgs.length === 0) {
+        ctgs = ['Work', 'Vacation']
+        storageService.saveToStorage(CTGSKEY, ctgs)
+    }
+    return ctgs
+
 }
