@@ -10,7 +10,9 @@ export const noteService = {
     duplicateNote,
     togglePin,
     getColors,
-    getStyle
+    getStyle,
+    removeTodo,
+    saveEdit,
 }
 
 
@@ -59,6 +61,25 @@ function deleteNote(noteId) {
     notes.splice(noteIdx, 1)
     _saveToStorage(notes)
     return Promise.resolve(notes)
+}
+
+function removeTodo(todoIdx,noteId) {
+    let notes = _loadFromStorage()
+    const note = notes.find(note => note.id === noteId)
+    const todos = note.info.todos
+    todos.splice(todoIdx, 1)
+    _saveToStorage(notes)
+    return Promise.resolve(note)
+}
+
+function saveEdit(txt, noteId){
+    console.log(noteId);
+    let notes = _loadFromStorage()
+    const note = notes.find(note => note.id === noteId)
+    console.log(note);
+    note.info.txt = txt
+    _saveToStorage(notes)
+    return Promise.resolve(note)
 }
 
 
@@ -126,9 +147,10 @@ function createNotes() {
             info: {
                 title: "Get my stuff together",
                 todos: [
-                    { txt: "Driving liscence", doneAt: null },
-                    { txt: "Coding power", doneAt: 187111111 }
-                ]
+                    { txt: "Driving liscence", doneAt: null, id:utilService.makeId() },
+                    { txt: "Coding power", doneAt: 187111111, id:utilService.makeId() }
+                ],
+                id:utilService.makeId()
             }
         }
     ];
