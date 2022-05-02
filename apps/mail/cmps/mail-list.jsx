@@ -24,7 +24,7 @@ export class MailList extends React.Component {
             )
         })
 
-        this.removeEvent = eventBusService.on('nav', (nav) => {
+        this.removeEvent = eventBusService.on('navCtg', (nav) => {
             this.onNavClick(nav)
         })
         this.removeEvent = eventBusService.on('sort', (sortBy) => {
@@ -43,6 +43,7 @@ export class MailList extends React.Component {
         const { filterBy, sortBy } = this.state
         emailService.query(filterBy, sortBy)
             .then(mails => this.setState({ mails }))
+            .then(this.setUrl(filterBy))
     }
 
     onSelect = (mailId) => {
@@ -76,8 +77,15 @@ export class MailList extends React.Component {
 
     onNavClick = (nav) => {
         let { ctgs } = this.state.filterBy
+        this.setUrl(this.state.filterBy)
         emailService.getNavAtCtgs(ctgs, nav)
             .then(this.setState((prevState) => ({ filterBy: { ...prevState.filterBy, ctgs } }), () => this.loadMails()))
+    }
+
+    setUrl = (inputValue) => {
+        const urlSrcPrm = new URLSearchParams(inputValue)
+        const searchStr = urlSrcPrm.toString()
+        this.props.history.push(`/mail?${searchStr}`)
     }
 
     onSortBy = (sortBy) => {
@@ -85,16 +93,27 @@ export class MailList extends React.Component {
     }
 
     render() {
-        const { mails, filterBy } = this.state
+        const { mails, filterBy, selectIds, sortBy } = this.state
         const readOrSent = (filterBy.ctgs[0] === 'inbox') ? 'Read' : 'Sent'
-
+        let sentAtClass
+        let titleClass
+        if (sortBy === 'sentAt') {
+            sentAtClass = 'selected'
+            titleClass = 'unselected'
+        } else {
+            sentAtClass = 'unselected'
+            titleClass = 'selected'
+        }
         return <section className="mail-list">
-            <MessageAction onCtg={this.onCtg} onRead={() => this.onRead} onDelete={() => this.onDelete} />
+            {(selectIds.length > 0) && <MessageAction onCtg={this.onCtg} onRead={() => this.onRead} onDelete={() => this.onDelete} />}
+            {(selectIds.length === 0) && < div className="sort-by">
+                <label>Sort By: <span className={sentAtClass} onClick={() => this.onSortBy('sentAt')}>Date /</span> <span className={titleClass} onClick={() => this.onSortBy('title')}>Title</span></label>
+            </div>}
             <div className="list">
                 {(filterBy.ctgs[0] !== 'sent') && <UnreadMailList mails={mails} onSelect={this.onSelect} />}
-                <h1>{readOrSent}</h1>
+                <h1>{readOrSent} </h1>
                 <ReadMailList mails={mails} onSelect={this.onSelect} />
             </div>
-        </section>
+        </section >
     }
 }

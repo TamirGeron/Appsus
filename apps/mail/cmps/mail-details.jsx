@@ -17,9 +17,8 @@ export class MailDetail extends React.Component {
             .then(mail => {
                 this.setState({ mail })
                 emailService.markAsRead(mail.id)
-                eventBusService.emit('nav', 'unreadMailCount')
-            }
-            )
+                eventBusService.emit('nav', mail.id)
+            })
     }
 
     onSend(event) {
@@ -46,24 +45,25 @@ export class MailDetail extends React.Component {
     render() {
         const { mail } = this.state
         const mailTime = emailService.before(mail.sentAt)
-
         return <section className="mail-detail">
             <MessageAction toKeep={() => this.toKeep} onDelete={() => this.onDelete} />
-            <h1>Title: {mail.title}</h1>
-            <div className="mail-detail-title">
-                <h1>From: {mail.mail}</h1>
-                <label>{mailTime} ago</label>
-            </div>
-            <h1></h1>
-            <p>{mail.body}</p>
+            <div className="detail-body">
+                <h1>Title: {mail.title}</h1>
+                <div className="mail-detail-title">
+                    <h1>From: {mail.mail}</h1>
+                    <label>{mailTime}</label>
+                </div>
+                <h1></h1>
+                <pre>{mail.body}</pre>
 
-            <form onSubmit={() => this.onSend(event)}>
-                <label>To: <input disabled type="text" defaultValue={mail.mail} /></label>
-                <br />
-                <label>Title: <input disabled type="text" defaultValue={mail.title} /></label>
-                <textarea rows="5" cols="10" />
-                <input type="submit" value="Send" />
-            </form>
+                <form onSubmit={() => this.onSend(event)}>
+                    <label>To: <input disabled type="text" defaultValue={mail.mail} /></label>
+                    <br />
+                    <label>Title: <input type="text" defaultValue={mail.title} /></label>
+                    <textarea rows="5" cols="10" />
+                    <input type="submit" value="Replay" ></input>
+                </form>
+            </div>
         </section >
     }
 }

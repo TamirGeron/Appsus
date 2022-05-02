@@ -68,7 +68,14 @@ export class MailIndex extends React.Component {
     }
 
     onNavClick = (nav) => {
-        eventBusService.emit('nav', nav)
+        const filterBy = {
+            search: '',
+            ctgs: [nav]
+        }
+        const urlSrcPrm = new URLSearchParams(filterBy)
+        const searchStr = urlSrcPrm.toString()
+        this.props.history.push(`/mail?${searchStr}`)
+        eventBusService.emit('navCtg', nav)
     }
 
     onSortBy = (sortBy) => {

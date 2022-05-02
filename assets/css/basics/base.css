@@ -18,5 +18,5 @@ table {
     table-layout: fixed;
     width: 100%;
     border-spacing: 0;
-    padding: 20px;
+    padding-bottom: 10px;
 }

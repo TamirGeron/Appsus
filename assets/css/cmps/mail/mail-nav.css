@@ -1,6 +1,6 @@
 .mail-nav {
     padding-top: 30px;
-    font-size: .875rem
+    font-size: .875rem;
 }
 
 .mail-nav>* {
@@ -20,16 +20,30 @@
     height: 30px;
     padding-left: 10px;
     padding-right: 10px;
-    border-radius: 0 16px 16px 0;
-    width: 100%;
+    border-radius: 0 30px 30px 0;
+    padding-top: 15px;
+    width: 90%;
 }
 
-.mail-nav .mail-nav-no-btn>*:hover {
+.mail-nav .mail-nav-no-btn>*:hover:not(.ctgs) {
     background-color: #e8eaed;
 }
 
 .mail-nav .mail-nav-no-btn>*:active {
     background-color: #e8eaed;
+}
+
+.mail-nav .ctg {
+    padding-left: 20px;
+    height: 20px;
+    padding-right: 0;
+    border-radius: 0 20px 20px 0;
+    padding-top: 10px;
+    width: 90%;
+}
+
+.mail-nav .ctgs {
+    cursor: default;
 }
 
 @media (max-width: 800px) {

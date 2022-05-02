@@ -12,7 +12,6 @@ export class MailNav extends React.Component {
 
     componentDidMount() {
         this.updateUnread()
-        this.mounted = true
         this.removeEvents = eventBusService.on('nav', (lbl) => {
             emailService.unreadMailCount()
                 .then(unreadMailCount => {
@@ -50,10 +49,6 @@ export class MailNav extends React.Component {
                 <div onClick={() => this.toggleNav('sent')}>Sent</div>
                 <div className="ctgs">Categories</div>
                 <MailCtgs toggleNav={this.toggleNav} />
-                <select onChange={() => this.props.onSortBy(event.target.value)}>
-                    <option value="sentAt">Date</option>
-                    <option value="title">Title</option>
-                </select>
             </div>
             <button className="btn-toggle-nav" onClick={() => this.toggleNav('')}>{menu}</button>
 
