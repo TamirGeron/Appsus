@@ -6,7 +6,7 @@
 .message-action>* {
     height: 40px;
     width: 40px;
-    font-size: 150%;
+    font-size: 20px;
     margin: 10px;
     border-radius: 5px;
 }
@@ -17,5 +17,11 @@
 
 .message-action .input-container {
     position: absolute;
+}
 
+.message-action .ctgs button {
+    height: 40px;
+    width: 40px;
+    font-size: 20px;
+    border-radius: 5px;
 }

@@ -16,7 +16,8 @@ export const emailService = {
     readUnreadMails,
     getCtgs,
     ctgsMails,
-    addCtg
+    addCtg,
+    getColor
 }
 
 const MAILKEY = 'mailDB'
@@ -156,7 +157,15 @@ function markAsRead(mailId) {
 function getCtgs() {
     let ctgs = storageService.loadFromStorage(CTGSKEY)
     if (!ctgs || ctgs.length === 0) {
-        ctgs = ['Work', 'Vacation']
+
+        ctgs = [{
+            ctg: 'Work',
+            color: utilService.getRandomColor()
+        },
+        {
+            ctg: 'Vacation',
+            color: utilService.getRandomColor()
+        }]
         storageService.saveToStorage(CTGSKEY, ctgs)
     }
     return ctgs
@@ -164,6 +173,11 @@ function getCtgs() {
 
 function addCtg(ctg) {
     let ctgs = getCtgs()
-    ctgs.push(ctg)
+    ctgs.push({ ctg: ctg, color: utilService.getRandomColor })
     storageService.saveToStorage(CTGSKEY, ctgs)
+}
+
+function getColor(ctgs, ctgCheck) {
+    const ctgSelect = ctgs.find(ctg => ctg.ctg === ctgCheck)
+    return ctgSelect.color
 }

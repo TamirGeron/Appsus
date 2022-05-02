@@ -111,7 +111,7 @@ export class MailList extends React.Component {
             </div>}
             <div className="list">
                 {(filterBy.ctgs[0] !== 'sent') && <UnreadMailList mails={mails} onSelect={this.onSelect} />}
-                <h1>{readOrSent}</h1>
+                <h1>{readOrSent} </h1>
                 <ReadMailList mails={mails} onSelect={this.onSelect} />
             </div>
         </section >

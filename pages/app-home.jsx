@@ -5,25 +5,21 @@ export function AppHome() {
         {/* <h1>Welcome to T&S App</h1> */}
         <div className="link">
             <div className="buttons">
+                <Link to="/mail">
+                    <img src="./assets/img/mail.jpg" />
+                </Link>
 
-                <button>
-                    <Link to="/mail">
-                        Mail App
-                    </Link>
-                </button>
-                <button>
-                    <Link to="/note">
-                        Keep Notes App
-                    </Link>
-                </button>
+                <Link to="/note">
+                    <img src="./assets/img/note.jpg" />
+                </Link>
 
-                <button>
-                    <a href="https://tamirgeron.github.io/Book-App/">Books </a>
-                </button>
+                <a href="https://tamirgeron.github.io/Book-App/">
+                    <img src="./assets/img/book.jpg" />
+                </a>
             </div>
 
 
-            <div className="gifs">
+            {/* <div className="gifs">
                 <Link to="/mail">
                     <img src="https://media.giphy.com/media/eRIrROHUPJvgs/giphy.gif" alt="" />
                 </Link>
@@ -35,7 +31,7 @@ export function AppHome() {
                 <a href="https://tamirgeron.github.io/Book-App/">
                     <img src="https://media.giphy.com/media/3o85xBwvWcj1Z11Gda/giphy.gif" alt="" />
                 </a>
-            </div>
+            </div> */}
 
         </div>
 
