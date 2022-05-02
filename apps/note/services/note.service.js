@@ -200,7 +200,7 @@ function createNotes() {
             type: "note-img",
             isPinned: false,
             info: {
-                url: "assets/img/sceliphron_spirifex.jpg",
+                url: "assets/img/wasp.jpg",
                 title: "טייחת שחורת חזה"
             },
             style: {
